@@ -11,7 +11,7 @@ Initially interested in the possible effect of spatial spillover effects on the 
 attempted to replicate their results. 
 The original analysis was done in Stata and I "translated" the data preparation and regressions into R. 
 For most table I am able to replicate their results save some very minor discrepancies. 
-Only for table 3, which looks at the interaction between aid money and the availability of a PRT, I haveb't been able
+Only for table 3, which looks at the interaction between aid money and the availability of a PRT, I haven't been able
 to replicate the results. 
 
 Included are the following files:
