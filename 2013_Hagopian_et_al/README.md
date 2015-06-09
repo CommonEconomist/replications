@@ -1,6 +1,8 @@
 Mortality in Iraq
 ==============
 
+**Replication status:** *Successful* (more or less)
+
 These are the replication files for the study by Hagopian et al. (2013) which was pubslihed in [PLOS Medicine](http://www.plosmedicine.org/article/info%3Adoi%2F10.1371%2Fjournal.pmed.1001533).
 The study attempts to estimate the number of excess deaths in Iraq between 2003-2011 as a result of the U.S. invasion. 
 Based on survey data from a 2,000 household cluster-survey the authors found for the period between March 2003 and June 2011, Iraq had a crude death rate of 4.55 per 1,000 person-years with a 95% interval of 3.74–5.27. 
