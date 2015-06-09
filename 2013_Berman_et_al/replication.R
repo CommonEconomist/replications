@@ -5,7 +5,7 @@
 
 #### Load libraries and data ####
 
-setwd("~/Dropbox/Sandbox/epidemais2")
+setwd("[SPECIFY DIR]")
 
 ## Load libraries
 library(maptools)
@@ -16,10 +16,10 @@ library(RColorBrewer)
 library(DataCombine)
 
 ## Load data
-berman<-read.dta("raw_data/BermanetalAER2013replication.dta")
+berman<-read.dta("BermanetalAER2013replication.dta")
 
 ## Functions
-source("code/clse.R") # Robust clustered standard errors
+source("clse.R") # Robust clustered standard errors
 
 #### Data preparation ####
 
