@@ -1,6 +1,8 @@
 Violence-reducing effects of development spending in Iraq
 ==============
 
+**Replication status:** *Partially successful*
+
 The study by Berman et al. (2013) published in the [AER](https://www.aeaweb.org/articles.php?doi=10.1257/aer.103.3.512) was one of the 
 first studies that looked at the effect of foreign aid on conflict at the sub-national level.
 Using panel data on development spending at the district level for Iraq, the study showed the potential 
