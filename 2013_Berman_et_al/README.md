@@ -1,4 +1,4 @@
-Violence-reducing effects of development spending in Iraq
+Modest, Secure, and Informed: Successful Development in Conflict Zones
 ==============
 
 **Replication status:** *Partially successful*
