@@ -28,7 +28,7 @@ The following folders and files are included for the replication:
 * `clse.R` code to calculate robust standard errors
 * `narrow_replication.R` direct replciation of the results. Uses `data.dta`
 * `scientific_replication.R` re-estimates the model using newer data and extending the time period. This requires `new_data.R` to be run first. 
-* `new_data.R` creates the dataset for the scientific replication. Creates `newData.Rdata` which can be found in `tidy_dat`
+* `new_data.R` creates the dataset for the scientific replication. Creates `newData.Rdata` which can be found in `tidy_data`
 
 
 
