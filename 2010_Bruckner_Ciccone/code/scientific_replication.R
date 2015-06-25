@@ -1,0 +1,109 @@
+#******************************************************************************
+# This version:  25-06-2015
+# First version: 24-06-2015
+# Replication Brückner & Ciccone (2010)
+# International Commodity Prices, Growth and 
+# the Outbreak of Civil War in Sub-Saharan Africa
+# Updating and extending the data
+#******************************************************************************
+
+setwd("[SET DIR]/2010_Bruckner_Ciccone")
+options(scipen=7)
+
+## Libraries
+
+## Load data and functions
+load("newData.Rdata")
+source("clse.R") # For robust standard clustered errors
+mse <- function(sm) { 
+    mse <- mean(sm$residuals^2)
+    return(mse)
+}
+
+
+t1<-na.omit(df.New[,c(1,2,7:10,20)])
+t2<-na.omit(df.New[,c(1,2,7:10,18)])
+t3<-na.omit(df.New[,c(1,2,7:11,20)])
+t4<-na.omit(df.New[,c(1,2,7:11,18)])
+t0<-t1[t1$year<=2006,]
+
+#### Commodity price shocks and civil war onset ####
+
+# Replication Table 2 column 1 1981-2006
+m1o<-lm(war.onset~index.g+index.g.l+index.g.l2+
+            factor(ccode)+factor(year)+factor(ccode)*year,t0)
+clse(m1o,1,m1o$model[,5])
+summary(m1o);mse(m1o)
+
+# Replication Table 2 column 5 1981-2006
+m5o<-lm(war.onset~ind+factor(ccode)+factor(year)+factor(ccode)*year,t0)
+clse(m5o,1,m5o$model[,5])
+summary(m5o);mse(m5o)
+
+# Replication Table 2 column 1 1981-2013
+m1<-lm(war.onset~index.g+index.g.l+index.g.l2+
+            factor(ccode)+factor(year)+factor(ccode)*year,t1)
+clse(m1,1,m1$model[,5])
+summary(m1);mse(m1)
+
+# Replication Table 2 column 5 1981-2013
+m5<-lm(war.onset~ind+factor(ccode)+factor(year)+factor(ccode)*year,t1)
+clse(m5,1,m5$model[,5])
+summary(m5);mse(m5)
+
+# Replication Table 2 column 1 1981-2013, civil conflict
+m1a<-lm(onset~index.g+index.g.l+index.g.l2+
+            factor(ccode)+factor(year)+factor(ccode)*year,t2)
+clse(m1a,1,m1a$model[,5])
+summary(m1a);mse(m1a)
+
+# replication Table 2 column 5 1981-2013, civil conflict
+m5a<-lm(onset~ind+factor(ccode)+factor(year)+factor(ccode)*year,t2)
+clse(m5a,1,m5a$model[,5])
+summary(m5a);mse(m5a)
+
+#### Table: Economic growth and civil war onset ####
+
+# Column 1
+w1<-lm(gdp.g~ind+factor(ccode)+factor(year)+factor(ccode)*year,t3)
+clse(w1,1,w1$model[,3])
+summary(w1);mse(w1)
+
+# Column 2
+w2<-lm(war.onset~gdp.g+factor(ccode)+factor(year)+factor(ccode)*year,t3)
+clse(w2,1,w2$model[,3])
+summary(w2);mse(w2)
+
+# Column 3
+w3<-lm(war.onset~ind+factor(ccode)+factor(year)+factor(ccode)*year,t3)
+clse(w3,1,w3$model[,3])
+summary(w3);mse(w3)
+
+# Column 4
+t3$yhat<-predict(w1)
+iv1<-lm(war.onset~yhat+factor(ccode)+factor(year)+factor(ccode)*year,t3)
+clse(iv1,1,iv1$model[,3])
+summary(iv1);mse(iv1)
+
+#### Table: Economic growth and civil conflict onset ####
+
+# Column 1
+c1<-lm(gdp.g~ind+factor(ccode)+factor(year)+factor(ccode)*year,t4)
+clse(c1,1,c1$model[,3])
+summary(c1);mse(c1)
+
+# Column 2
+c2<-lm(war.onset~gdp.g+factor(ccode)+factor(year)+factor(ccode)*year,t4)
+clse(c2,1,c2$model[,3])
+summary(c2);mse(c2)
+
+# Column 3
+c3<-lm(war.onset~ind+factor(ccode)+factor(year)+factor(ccode)*year,t4)
+clse(c3,1,c3$model[,3])
+summary(c3);mse(c3)
+
+# Column 4
+t4$yhat<-predict(c1)
+iv2<-lm(war.onset~yhat+factor(ccode)+factor(year)+factor(ccode)*year,t4)
+clse(iv2,1,iv2$model[,3])
+summary(iv2);mse(iv2)
