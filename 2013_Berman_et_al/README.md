@@ -22,3 +22,9 @@ Included are the following files:
 * `clse.R` is the code to calculate robust standard errors
 * `replication.R` replicates the results, at least some of them
 
+**Update** *21-07-2015* 
+Additionaly, files are included for spatial analysis
+
+* `iraq_districts` with various extensions are the files needed to load the shapefile
+* `spatial_pattern.R` is a simple code to look at spatial patterns in the conflict data
+
