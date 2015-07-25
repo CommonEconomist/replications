@@ -203,7 +203,7 @@ af$war<-as.numeric(af$IntensityLevel==2)
 af$year<-af$Year
 
 # Merge data
-conflict<-aggregate(cbind(any,minor,war)~ccode+year,af,min)
+conflict<-aggregate(cbind(any,minor,war)~ccode+year,af,max)
 data<-merge(ind,wdi[,-1:-3],all.x=TRUE)
 data<-merge(data,conflict,all.x=TRUE)
 
