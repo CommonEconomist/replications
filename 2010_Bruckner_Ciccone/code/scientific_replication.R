@@ -41,7 +41,7 @@ t4<-na.omit(df.New[,c(1,2,7:11,18)]) # Civil conflict, income
 t0<-t1[t1$year<=2006,]               # Original period, most recent data
 
 #### Commodity price shocks and civil war onset ####
-# Table in annex
+## Table in annex
 
 # Replication Table 2 column 1 1981-2006
 m1o<-lm(war.onset~index.g+index.g.l+index.g.l2+
@@ -77,7 +77,7 @@ clse(m5a,1,m5a$model[,3])
 summary(m5a);mse(m5a)
 
 #### Table: Economic growth and civil war onset 1981-2013 ####
-# IV-2SLS, in main text
+## IV-2SLS, in main text
 
 # Column 1
 w1<-lm(gdp.g~ind+factor(ccode)+factor(year)+factor(ccode)*year,t3)
@@ -101,7 +101,7 @@ clse(iv1,1,iv1$model[,3])
 summary(iv1);mse(iv1)
 
 #### Table: Economic growth and civil conflict onset ####
-# IV-2SLS with civil conflict
+## IV-2SLS with civil conflict
 
 # Column 1
 c1<-lm(gdp.g~ind+factor(ccode)+factor(year)+factor(ccode)*year,t4)
