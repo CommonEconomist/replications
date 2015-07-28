@@ -6,7 +6,7 @@
 # the Outbreak of Civil War in Sub-Saharan Africa
 #******************************************************************************
 
-setwd("[SET DIR]/2010_Bruckner_Ciccone")
+setwd("[SET DIR]/Replications/2010_Bruckner_Ciccone")
 options(scipen=7)
 
 ## Libraries
