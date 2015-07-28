@@ -4,7 +4,7 @@
 # Preparing updated data on commodity prices, income growth, and conflict
 #******************************************************************************
 
-setwd("[SET DIR]/Replciations/2010_Bruckner_Ciccone")
+setwd("[SET DIR]/Replications/2010_Bruckner_Ciccone")
 
 ## Libraries
 library(countrycode)
