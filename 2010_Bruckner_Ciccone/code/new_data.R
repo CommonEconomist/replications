@@ -13,9 +13,9 @@ library(data.table)
 library(WDI)
 
 ## Load data
-imf<-read.csv("imf.csv",header=TRUE,row.names=NULL,stringsAsFactors=FALSE,sep=",")
-gem<-read.csv("gem.csv",header=TRUE,row.names=NULL,stringsAsFactors=FALSE,sep=",")
-load("ucdpConflict.rdata")
+imf<-read.csv("raw_data/imf.csv",header=TRUE,row.names=NULL,stringsAsFactors=FALSE,sep=",")
+gem<-read.csv("raw_data/gem.csv",header=TRUE,row.names=NULL,stringsAsFactors=FALSE,sep=",")
+load("raw_data/ucdpConflict.rdata")
 
 
 #### Calculate price index ####
@@ -203,7 +203,7 @@ af$war<-as.numeric(af$IntensityLevel==2)
 af$year<-af$Year
 
 # Merge data
-conflict<-aggregate(cbind(any,minor,war)~ccode+year,af,min)
+conflict<-aggregate(cbind(any,minor,war)~ccode+year,af,max)
 data<-merge(ind,wdi[,-1:-3],all.x=TRUE)
 data<-merge(data,conflict,all.x=TRUE)
 
@@ -227,7 +227,7 @@ data<-slide(data,Var="war",
           GroupVar="ccode",
           NewVar="war.l",slideBy=-1)
 
-# NAs to zeroa gain
+# NAs to zero again
 data[is.na(data$any.l),]$any.l<-0
 data[is.na(data$minor.l),]$minor.l<-0
 data[is.na(data$war.l),]$war.l<-0

@@ -1,5 +1,5 @@
 #******************************************************************************
-# This version:  25-06-2015
+# This version:  25-07-2015
 # First version: 24-06-2015
 # Replication Brückner & Ciccone (2010)
 # International Commodity Prices, Growth and 
@@ -13,8 +13,8 @@ options(scipen=7)
 ## Libraries
 
 ## Load data and functions
-load("newData.Rdata")
-source("clse.R") # For robust standard clustered errors
+load("tidy_data/newData.Rdata")
+source("code/clse.R") # For robust standard clustered errors
 mse <- function(sm) { 
     mse <- mean(sm$residuals^2)
     return(mse)
