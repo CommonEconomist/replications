@@ -1,10 +1,10 @@
 #******************************************************************************
-# This version:  24-06-2015
+# This version:  28-07-2015
 # First version: 23-06-2015
 # Preparing updated data on commodity prices, income growth, and conflict
 #******************************************************************************
 
-setwd("[SET DIR]/2010_Bruckner_Ciccone")
+setwd("[SET DIR]/Replciations/2010_Bruckner_Ciccone")
 
 ## Libraries
 library(countrycode)
@@ -13,10 +13,9 @@ library(data.table)
 library(WDI)
 
 ## Load data
-imf<-read.csv("imf.csv",header=TRUE,row.names=NULL,stringsAsFactors=FALSE,sep=",")
-gem<-read.csv("gem.csv",header=TRUE,row.names=NULL,stringsAsFactors=FALSE,sep=",")
-load("ucdpConflict.rdata")
-
+imf<-read.csv("raw_data/imf.csv",header=TRUE,row.names=NULL,stringsAsFactors=FALSE,sep=",")
+gem<-read.csv("raw_data/gem.csv",header=TRUE,row.names=NULL,stringsAsFactors=FALSE,sep=",")
+load("raw_data/ucdpConflict.rdata")
 
 #### Calculate price index ####
 
@@ -212,6 +211,9 @@ data[is.na(data$any),]$any<-0
 data[is.na(data$minor),]$minor<-0
 data[is.na(data$war),]$war<-0
 
+# Recode minor conflict variable
+data[data$any==1 & data$war==0,]$minor<-1
+
 # Lag of conflict
 data<-data[order(data$ccode,data$year),]
 
@@ -227,7 +229,7 @@ data<-slide(data,Var="war",
           GroupVar="ccode",
           NewVar="war.l",slideBy=-1)
 
-# NAs to zeroa gain
+# NAs to zero again
 data[is.na(data$any.l),]$any.l<-0
 data[is.na(data$minor.l),]$minor.l<-0
 data[is.na(data$war.l),]$war.l<-0
@@ -249,3 +251,4 @@ df.New<-data[data$year>=1981 & data$year<=2013,]
 
 ## Save data
 save(df.New,file="tidy_data/newData.Rdata")
+
