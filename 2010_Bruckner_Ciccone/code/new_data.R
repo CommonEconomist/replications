@@ -54,6 +54,7 @@ country<-c("Angola",rep("Benin",2),rep("Botswana",2),rep("Burkina Faso",2)
            rep("Sierra Leone",4),"Somalia",rep("South Africa",3),rep("Sudan",2),
            rep("Swaziland",2),rep("Tanzania",4),rep("Togo",2),"Uganda",
            "Zambia",rep("Zimbabwe",4))
+
 commodities<-c("Oil",
                "Cotton","Oil",
                "Nickel","Copper",
