@@ -1,7 +1,7 @@
 International Commodity Prices, Growth and the Outbreak of Civil War in Sub-Saharan Africa
 ==============
 
-**Replication status:** *Partially successful*
+**Replication status:** *Successful*
 
 In a 2010 article in the [Economic Journal](http://onlinelibrary.wiley.com/doi/10.1111/j.1468-0297.2010.02353.x/abstract), Brückner and Ciccone examine the link between economic performance and conflict, focussing on the effect of international commodity prices on the outbreak of civil war. 
 Using data for 39 countries in Sub-Sahara Africa between 1981-2006, they find that there is a higher probability of civil war onset following downturns in the international prices of the countries’ main export commodities. 
@@ -10,10 +10,11 @@ Their results also show that the outbreak of civil war is more likely following 
 
 I tried to reproduce their results in `R` carrying it out a direct replication as well as updating and extending the data to see whether their findings hold for more recent data and can be generalised. 
 For the direct replication I found that most results can be reproduced although there are differences in the values of the t-values. 
+These differences are caused by a small-sample adjustment in the calculations of the robust clustered standard errors.
 I wasn't able to replicate the logit model including country and year fixed effects and country-specific time trends. 
 Updating the data and extending data to cover the period 1981-2013 I did not find a statistically significant link between international commodity prices and conflict in Sub-Sahara Africa, as shown in the figure below. 
 
-![](http://i.imgur.com/IKd9jxL.png)
+![](http://i.imgur.com/6bnDoBn.png)
 
 The following folders and files are included for the replication:
 
