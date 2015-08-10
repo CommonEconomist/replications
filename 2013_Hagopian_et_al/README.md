@@ -1,4 +1,4 @@
-Mortality in Iraq
+Mortality in Iraq Associated with the 2003–2011 War and Occupation: Findings from a National Cluster Sample Survey by the University Collaborative Iraq Mortality Study
 ==============
 
 **Replication status:** *Successful* (more or less)
