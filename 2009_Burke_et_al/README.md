@@ -11,7 +11,7 @@ The paper looks at the effect of climate change on civil war focussing on Sub-Sa
 There is still an ongoing debate on the validity of these results and this replication was part of a paper I have 
 [written](http://papers.ssrn.com/sol3/papers.cfm?abstract_id=2550228) which focuses on the general *modus operandi* in the conflict literature.
 I think that in general my skepticism concerning the claims made in the paper are visually summarised by the following figure which I made using the data:
-![](http://i.imgur.com/sy0lVjs.png)
+![](http://i.imgur.com/xd0XpFw.png)
 
 
 The replication focuses on the regression analysis presented in table 1 of their paper, and I included the code for the figure above. 
