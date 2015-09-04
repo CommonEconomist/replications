@@ -13,4 +13,4 @@ The following files are included:
 * `afghanistan.csv` contains the dataset
 * `Afghanistan.R` replicates their figure 1
 
-![](http://i.imgur.com/lc5UeYK.png)
+![](http://i.imgur.com/G8MGnfR.png)

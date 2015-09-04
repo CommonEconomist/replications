@@ -1,6 +1,6 @@
 #******************************************************************************
-# This version:  09-06-2015
 # Replication "Warming increases the risk of civil war in Africa
+# This version:  04-09-2015
 #******************************************************************************
 
 rm(list=ls(all=TRUE)) # Clear workspace
