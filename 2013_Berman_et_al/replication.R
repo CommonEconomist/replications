@@ -1,11 +1,11 @@
 #******************************************************************************
-# This version:  09-06-2015
-# Replication Berman et al. 2013
+# Replication Berman et al. (2013)
+# "Modest, Secure, and Informed: Successful Development in Conflict Zones"
+# This version:  04-07-2015
 #******************************************************************************
 
-#### Load libraries and data ####
-
-setwd("[SPECIFY DIR]")
+rm(list=ls(all=TRUE)) # Clear workspace
+options(scipen=4)     
 
 ## Load libraries
 library(maptools)
@@ -16,10 +16,10 @@ library(RColorBrewer)
 library(DataCombine)
 
 ## Load data
-berman<-read.dta("BermanetalAER2013replication.dta")
+berman<-read.dta("2013_Berman_et_al/BermanetalAER2013replication.dta")
 
 ## Functions
-source("clse.R") # Robust clustered standard errors
+source("2013_Berman_et_al/clse.R") # Robust clustered standard errors
 
 #### Data preparation ####
 
