@@ -1,5 +1,6 @@
 #******************************************************************************
-# Replication "Warming increases the risk of civil war in Africa
+# Burke et al. (2009) 
+# "Warming increases the risk of civil war in Africa
 # This version:  04-09-2015
 #******************************************************************************
 

@@ -1,16 +1,13 @@
 #******************************************************************************
-# This version:  16-06-2015
-# First version: 14-05-2014
 # Replication "Contagious Rebellion and Preemptive Repression"
 # Estimation using JAGS rather than BUGS
 # Only model 1
+# This version:  16-06-2015
+# First version: 14-05-2014
 #******************************************************************************
 
-## Set working directory
-setwd(["SPECIFY DIR"])
-
 ## Load data
-load("2014_Danneman_Ritter_JCR.RData")
+load("2014_Danneman_Ritter/2014_Danneman_Ritter_JCR.RData")
 
 #### Model 1 ####
 

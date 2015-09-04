@@ -2,6 +2,7 @@
 # Best-fit power-law progress curve for Afghanistan
 # and IEDs
 # Based on Johnson et al. (2011, Science)
+# "Pattern in Escalations in Insurgent and Terrorist Activity"
 # This version:  13-07-2015
 # First version: 10-07-2015
 #******************************************************************************
