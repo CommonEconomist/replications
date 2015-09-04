@@ -1,11 +1,10 @@
 #******************************************************************************
-# This version:  09-06-2015
-# First version: 07-08-2014
 # Replication of Besley and Reynal-Querrol (2014)
 # "The Legacy of Historical Conflict: Evidence from Africa"
+# This version:  09-06-2015
+# First version: 07-08-2014
 #******************************************************************************
 
-setwd("[SPECIFY DIR]")
 rm(list=ls(all=TRUE)) # Clear workspace
 options(scipen=4)     # Preferences
 
@@ -17,8 +16,8 @@ library(countrycode)
 library(car)
 
 ## Load data
-d<-read.dta("raw_data/table2.dta")
-load("tidy_data/conflict_data.Rdata")
+d<-read.dta("2014_Besley_Reynal-Querol/raw_data/table2.dta")
+load("2014_Besley_Reynal-Querol/tidy_data/conflict_data.Rdata")
 
 #### Figure: War prevalance ####
 par(mar=c(5,6,2,2))
