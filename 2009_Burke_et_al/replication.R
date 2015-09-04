@@ -11,13 +11,14 @@ library(foreign)
 library(plyr)
 
 ## Load data
-cc<-read.dta("~/climate_conflict.dta")  # Original data
+cc<-read.dta("2009_Burke_et_al/climate_conflict.dta")  # Original data
 
 ## Functions
-source("~/clse.R")                         # Robust standard errors
+source("2009_Burke_et_al/clse.R")                      # Robust standard errors
 
-
+#**************************************
 ##### REPLICATION ####
+#**************************************
 
 cc<-cc[order(cc$ccode,cc$year),]
 cc<-cc[cc$year_actual<=2002,] # Subset to included data only (N=889)
@@ -64,27 +65,30 @@ m3<-lm(incidence~temp+temp.l+pre+pre.l+gdp+polity2
 summary(m3) 
 clse(m3,1,v3$ccode) # Robust standard errors
 
+
+#**************************************
 ##### FIGURE: Predictions ####
+#**************************************
 
 ## Data
 d<-data.frame(incidence=incidence,temp=round(temp-m,2),pr=fitted(m1),res=m1$residuals)
 
 ## Plot
-par(pty="s",las=0)
+par(mar=c(4,4,2,2),pty="s",las=0,family="serif")
 plot(d$temp,d$pr,axes=FALSE,ylab="",xlab="",pch=1,xlim=c(-2,2),cex=.8,col="gray20")
 points(d[d$incidence==1,]$temp,d[d$incidence==1,]$pr,col="black",pch=19,cex=1)
 
 # Axis
-axis(1,at=seq(-2,2,.5),tck=0.02, cex.axis=1.2)
-axis(2,at=seq(-1,1.5,.25),tck=0.02, cex.axis=1.2,las=1,line=1)
-mtext("Deviation from mean temperature",side=1,line=2,cex=1)
-mtext("Predicted probability",side=2,line=5,cex=1)
+axis(1,at=seq(-2,2,.5),tck=0.02, cex.axis=1.2,col="white")
+axis(2,at=seq(-1,1.5,.25),tck=0.02, cex.axis=1.2,las=1,line=1,col="white")
+mtext("Deviation from mean temperature",side=1,line=2.5,cex=1.2)
+mtext("Predicted probability",side=2,line=5,cex=1.2)
 
 # Lines
 abline(h=0,lty=2,lwd=2)
 abline(h=1,lty=2,lwd=2)
 
 # Labels
-text(1.25,0.85,"Actual war")
+text(1.25,0.85,"Observed war")
 segments(1.22,0.82,.8,0.74)
 
