@@ -8,9 +8,9 @@
 #******************************************************************************
 
 ## Load data
-deaths<-read.csv("2013_Hagopian_et_al/raw_data/hh_deaths.csv",header=TRUE,sep=",",row.names=NULL)
-households<-read.csv("2013_Hagopian_et_al/raw_data/hh_roster.csv",header=TRUE,sep=",",row.names=NULL)
-population<-read.csv("2013_Hagopian_et_al/raw_data/pop.csv",header=TRUE,sep=",",row.names=NULL)
+deaths<-read.csv("2013_Hagopian_et_al/hh_deaths.csv",header=TRUE,sep=",",row.names=NULL)
+households<-read.csv("2013_Hagopian_et_al/hh_roster.csv",header=TRUE,sep=",",row.names=NULL)
+population<-read.csv("2013_Hagopian_et_al/pop.csv",header=TRUE,sep=",",row.names=NULL)
 
 #**************************************
 #### CLEAN DATA ####
@@ -124,7 +124,7 @@ deaths[deaths$yod>deaths$t1,]$exp0<-deaths[deaths$yod>deaths$t1,]$t1-
 deaths[deaths$yod>=deaths$t0 & deaths$yod<=deaths$t1,]$exp0<-
   deaths[deaths$yod>=deaths$t0 & deaths$yod<=deaths$t1,]$yod-
   deaths[deaths$yod>=deaths$t0 & deaths$yod<=deaths$t1,]$t0
-sum(deaths$exp0) 654.18
+sum(deaths$exp0) # 654.18
 
 ## During war
 deaths$t0<-2003.167
@@ -149,29 +149,28 @@ sum(deaths$exp1) # 1227.82
 #**************************************
 
 ## Person-years
-py0<-sum(households$exp0)+sum(deaths$exp0) # Pre-war (15335.32) 15215.72
-py1<-sum(households$exp1)+sum(deaths$exp1) # During war (74636.51) 74510.78
+py0<-sum(households$exp0)+sum(deaths$exp0) # Pre-war: 15215.72
+py1<-sum(households$exp1)+sum(deaths$exp1) # During war: 74510.78 
 
 ## Death rates
-cdr0<-1000*d.pre/py0 # Pre-war (2.89 vs. original 2.89)
-cdr1<-1000*(d.during+d.war)/py1 # During war (4.54 vs. original 4.55)
-excess=cdr1-cdr0 # (1.64)
+cdr0<-1000*d.pre/py0 # Pre-war: 2.89  (Original 2.89)
+cdr1<-1000*(d.during+d.war)/py1 # During war: 4.54 (Original 4.55)
+excess=cdr1-cdr0 # 1.64
 
 ## Cumulative population
 pop<-aggregate(population~year,population,sum)
 py<-sum(pop[8:14,2])+9/12*pop[7,2]+.5*pop[15,2]
 
-## Excess deaths
-excess*py/1000 # 402188 
+## Excess deaths: 402188 (Original: 405000)
+excess*py/1000 
 
-# Number of violent deaths:
+# Number of violent deaths: 249452
 dr<-1000*d.war/py1
-dr*py/1000 # 249452
+dr*py/1000 
 
 #**************************************
 #### BOOTSTRAPS ####
 #**************************************
-
 
 # Bootstrap resampling
 # Code taken from: http://biostatmatt.com/archives/2125
@@ -233,18 +232,35 @@ set.seed(2014);system.time(b.exp1<-replicate(1000,sum(resample(dat,cluster,c(F,T
 
 probs<-(1+c(-1,1)*0.95)/2 # 95% interval
 
+
+## Excess deaths
 a<-1000*(d1+v)/b.exp1-1000*d0/b.exp0
 b<-a*py/1000
+excess.deaths<-b
 quantile(a,probs=probs) # 0.20; 3.09
 quantile(b,probs=probs) # 50124; 756399
 
-# Excluding violent deaths
+## Excluding violent deaths
 a<-1000*d1/b.exp1-1000*d0/b.exp0
 b<-a*py/1000
+excess.normal<-b
 quantile(a,probs=probs) # -0.80; 1.95
 quantile(b,probs=probs) # -196019; 478079
 sum(a>0)/length(a)*100 # 80.3%
 
-# Save all the relevant output data
-save(list=c("py0","py1","cdr0","cdr1","excess","py","v","d0",
-            "d1","b.exp0","b.exp1"),file="output/ReplicationOutput.Rdata")
+## Violent deaths
+a<-1000*v/b.exp1
+b<-a*py/1000
+violent.deaths<-b
+quantile(a,probs=probs) # 0.72; 1.37
+quantile(b,probs=probs) # 175266; 334831
+
+#### Figure ####
+library(PerformanceAnalytics)
+library(psych)
+options(scipen=4)     
+
+d<-data.frame(exc=excess.deaths,norm=excess.normal,v=violent.deaths)
+colnames(d)<-c("Excess deaths","Non-violent excess deaths","Violent deaths")
+chart.Boxplot(d, main = "Bootstrap estimates \n (1000 replicates of clusters and households)",
+xlab="", ylab="",element.color = "transparent", as.Tufte=TRUE,ylim=c(-500000,1100000))
