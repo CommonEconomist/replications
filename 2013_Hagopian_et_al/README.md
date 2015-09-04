@@ -11,8 +11,9 @@ This corresponds with a central estimate of 405,000 excess deaths (95% interval 
 As part of a study on war and mortality , together with M. Spagat, I have tried to replicate their results using R. 
 The replication comes close to the original results although not exactly. 
 I find a central estimate for the crude death rate of 4.53 per 1,000 person-years which corresponds with about 406,000 excess deaths. 
-The 95% interval is slightly different ranging from 55,000 to 690,000. 
+The 95% interval is slightly different ranging from 50,000 to 756,000. 
 This is likely due to random differences in the randomisation process in R compared to their estimation in Python.
+![](http://i.imgur.com/BuoIXXS.png)
 
 This repository contains the original data and a replication script (`replication.R`) for generating the results similar to those in the paper. 
 
