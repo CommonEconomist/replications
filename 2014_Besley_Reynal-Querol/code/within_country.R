@@ -1,12 +1,10 @@
 #******************************************************************************
+# Replication of Besley and Reynal-Querrol (2014)
+# "The Legacy of Historical Conflict: Evidence from Africa"
+# Within-country estimation
 # This version:  09-06-2015
 # First version: 15-01-2014
-# Within-country estimation
 #******************************************************************************
-
-setwd("[SPECIFY DIR]")
-rm(list=ls(all=TRUE)) # Clear workspace
-options(scipen=4)     # Preferences
 
 ## Libraries
 library(foreign)
@@ -15,7 +13,6 @@ library(countrycode)
 ## Load data
 d<-read.dta("raw_data/table5.dta")
 ged<-read.csv("raw_data/ucdp-ged15.csv",header=TRUE,sep=",",row.names=NULL)
-
 
 #### Prepare UCDP GED data ####
 
@@ -49,7 +46,6 @@ df$conflict<-as.numeric(df$battle_deaths>0)
 
 m1<-lm(ConflictGrid~HistoricalConflictGrid+lpopdens90+factor(country),df)
 m2<-lm(conflict~HistoricalConflictGrid+lpopdens90+factor(country),df)
-
 
 ## Placebo test
 df$placebo<-rbinom(3546,1,51/3546)
