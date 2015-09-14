@@ -6,7 +6,7 @@
 # the Outbreak of Civil War in Sub-Saharan Africa
 #******************************************************************************
 
-setwd("[SPECIFY DIRECTORY]")
+setwd("~/Dropbox/Sandbox/picanmix")
 options(scipen=7)
 
 ## Libraries

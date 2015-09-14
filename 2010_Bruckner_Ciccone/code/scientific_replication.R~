@@ -7,7 +7,7 @@
 # First version: 24-06-2015
 #******************************************************************************
 
-setwd("[SPECIFY DIRECTORY]")
+setwd("~/Dropbox/Sandbox/picanmix")
 options(scipen=5)
 
 ## Libraries
