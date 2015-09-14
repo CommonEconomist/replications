@@ -22,17 +22,15 @@ d<-read.dta("raw_data/table2.dta")
 load("tidy_data/conflict_data.Rdata")
 
 #### Figure: War prevalance ####
-par(mar=c(5,6,2,2))
+par(mar=c(5,6,2,2),family="serif")
 
 ## Plot
 plot(d$WarPrevalence14001700,d$CivilWarIncidence,pch=19, col="black",
      axes=FALSE,xlab="",ylab="")
 
 # Axis
-axis(1,las=1,at=seq(0,100,10),tck=0.02,cex.axis=1.2)
-axis(2,las=1,at=seq(0,50,10),tck=0.02,cex.axis=1.2)
-axis(1,at=seq(0,100,5),tck=0.01,labels=FALSE)
-axis(2,at=seq(0,50,5),tck=0.01,labels=FALSE)
+axis(1,las=1,at=seq(0,100,10),tck=0.02,cex.axis=1.2,tick=FALSE)
+axis(2,las=1,at=seq(0,50,10),tck=0.02,cex.axis=1.2,tick=FALSE)
 
 mtext("Civil war incidence",side=2,cex=1.2,line=3)
 mtext("War prevalence 1400-1700 CE",side=1,cex=1.2,line=3)
