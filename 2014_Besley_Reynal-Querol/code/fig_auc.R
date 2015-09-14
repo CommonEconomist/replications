@@ -1,11 +1,12 @@
-## AUC PLOT
+#======================================
+#### AUC PLOT ####
 
-setwd("~/Dropbox/Sandbox/geriatrix")
+setwd("[SPECIFY DIR]")
 
 ## Libraries
-library(pROC)
 library(foreign)
 library(lmtest)
+library(pROC)
 library(sandwich)
 
 ## Load data
@@ -30,6 +31,8 @@ y<-as.numeric(obs$CivilWarIncidence>0)
 auc(y,fitted(m2))
 
 #### Estimate model permutations ####
+
+# There probably is a more efficient way to do this
 
 a1<-lm(CivilWarIncidence~lrgdpl2631970+
          region_nNUNN+region_sNUNN+region_wNUNN+region_eNUNN+region_cNUNN+
@@ -331,7 +334,7 @@ z[26]<-auc[1]-auc[27]
 t.values<-abs(t.values) 
 
 #### Plot the data ####
-par(mar=c(5,7,1,1))
+par(mar=c(5,7,1,1),family="serif")
 plot(t.values,z,type="p",bty="n",xlab="",ylab="",
      pch=19,cex=1.5,axes=FALSE)
 
@@ -355,16 +358,13 @@ var.names<-c("Historical conflict","GDP per cap. 1970",
              "Muslims","Legal origin","Gold","Oil","Diamonds",
              "Ethnicity","Yellow fever","Rugged terrain")
 
-
-
 text(t.values+h.adj,z+v.adj,var.names,adj=0)
 
 # Axes
-axis(1,las=1,at=seq(0,3,0.5),tck=0.02,cex.axis=1.2)
-axis(2,las=1,at=seq(-0.05,0.05,0.01),tck=0.02,cex.axis=1.2)
-axis(1,at=seq(0,3,0.5),tck=0.01,labels=FALSE)
+axis(1,las=1,tick=FALSE,at=seq(0,3,0.5),tck=0.02,cex.axis=1.2)
+axis(2,las=1,tick=FALSE,at=seq(-0.05,0.05,0.01),tck=0.02,cex.axis=1.2)
 mtext("Change in predictive power (AUC)",side=2,cex=1.2,line=4)
-mtext("Absolute t-values (robust)",side=1,cex=1.2,line=3)
+mtext("Absolute t-value (robust)",side=1,cex=1.2,line=3)
 
 # Fit regression line
 abline(lm(z~t.values-1),lty=2,lwd=2)
