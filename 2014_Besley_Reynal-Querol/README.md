@@ -22,7 +22,8 @@ And it is not just a statistically significant results, the historical conflict 
 Although one can wonder why 30 variables are needed in a dataset with just 48 observations of course. 
 I might want to extend some of the test concerning the predictions, specifically for the within-country estimation, but that is probably for future work. 
 
-![](http://i.imgur.com/Vpy7eKk.png)
+![](http://i.imgur.com/sc9ctQS.png)
+![](http://i.imgur.com/ZNpYhQk.png)
 
 Since this replication also includes an extension, there are some more files involved.
 The `raw_data` folder contains all the original data:
