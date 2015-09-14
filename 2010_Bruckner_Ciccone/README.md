@@ -24,9 +24,10 @@ The following folders and files are included for the replication:
 * `imf.csv` IMF international commodity prices time series (covers msot of the commodities)
 * `gem.csv` Global Economic Monitor international commodity prices time series (covers gold, phosphates, and tobacco)
 * `ucdpConflict.rdata` is version 4-2014a of the UCDP/PRIO Armed Conflict Dataset
+* `DOTS.csv` contains the direction of trade statistics for exports from Sub-Saharan African countries to OECD-member states
 
 `code` contains all the `R`-scripts needed to run the replication. This includes creating the new data
-* `clse.R` code to calculate robust standard errors
+* `functions.R` code to calculate robust standard errors and mean squared error
 * `narrow_replication.R` direct replciation of the results. Uses `data.dta`
 * `scientific_replication.R` re-estimates the model using newer data and extending the time period. This requires `new_data.R` to be run first. 
 * `new_data.R` creates the dataset for the scientific replication. Creates `newData.Rdata` which can be found in `tidy_data`
