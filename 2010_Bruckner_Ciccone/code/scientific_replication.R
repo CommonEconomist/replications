@@ -7,23 +7,28 @@
 # First version: 24-06-2015
 #******************************************************************************
 
-setwd("[SPECIFY DIRECTORY]")
+setwd("[SPECIFY DIR]/Replications/2010_Bruckner_Ciccone")
 options(scipen=5)
 
 ## Libraries
+library(countrycode)
+library(devtools)
 library(foreign)
 library(stargazer)
 
 ## Load data and functions
 load("tidy_data/newData.Rdata")
 df<-read.dta("raw_data/data.dta")
+load("raw_data/ucdpConflict.rdata")
 
-source("code/clse.R") # For robust standard clustered errors
+source("code/functions.R") 
 
-mse <- function(sm) { 
-    mse <- mean(sm$residuals^2)
-    return(mse)
-}
+## Create data frames
+t1<-na.omit(df.New[,c(1,2,7:10,21)]) # Civil war
+t2<-na.omit(df.New[,c(1,2,7:10,19)]) # Civil conflict
+t3<-na.omit(df.New[,c(1,2,7:12,21)]) # Civil war, income
+t4<-na.omit(df.New[,c(1,2,7:12,19)]) # Civil conflict, income
+t0<-t1[t1$year<=2006,]               # Original period, most recent data
 
 #### Descriptive statistics ####
 stargazer(df.New[,c("war.onset","onset","ind","index.g","oecd.exp","gdp.g")],
@@ -36,12 +41,78 @@ onset<-na.omit(onset[onset$war.onset==1,])
 sum(onset[onset$year<=2006,]$war.onset) # 27
 sum(onset[onset$year>2006,]$war.onset)  # 5
 
-## Create data frames
-t1<-na.omit(df.New[,c(1,2,7:10,21)]) # Civil war
-t2<-na.omit(df.New[,c(1,2,7:10,19)]) # Civil conflict
-t3<-na.omit(df.New[,c(1,2,7:12,21)]) # Civil war, income
-t4<-na.omit(df.New[,c(1,2,7:12,19)]) # Civil conflict, income
-t0<-t1[t1$year<=2006,]               # Original period, most recent data
+#**************************************
+##### Figure: conflict proportion #####
+#**************************************
+
+## Subset data
+africa<-ucdpConflict[ucdpConflict$Region==4 & ucdpConflict$Type==3 | 
+                       ucdpConflict$Region==4 & ucdpConflict$Type==4,]
+africa$iso3c<-countrycode(africa$Location,"country.name","iso3c",warn=TRUE)
+
+# Remove North African countries
+NAf<-c("DZA","MAR","LBY","TUN")
+africa$NAf<-as.numeric(africa$iso3c %in% NAf)
+africa<-africa[africa$NAf==0,]
+
+## Conflict/war indicators
+africa$incidence<-1
+africa$war<-as.numeric(africa$IntensityLevel==2)
+
+##  Calculate proportion per year
+d<-aggregate(cbind(incidence,war)~Year,
+               africa[africa$Year>=1980,],FUN=sum) 
+d$n.countries<-c(rep(46,10),rep(47,3),rep(48,18),rep(49,3))
+
+d$civ.p<-d$incidence/d$n.countries 
+d$war.p<-d$war/d$n.countries
+
+## Plot
+par(mar=c(3,6,5,3),family="serif")
+plot(d$Year,d$civ.p,type="n",xlim=c(1978,2017),ylim = c(0,.37),
+     axes=FALSE,xlab="",ylab="")
+
+# Trimmings
+rect(2007,0,2013,.35,col="grey90",lwd=0)                # New data period
+lines(d$Year,d$civ.p,lwd=2,lty=1,col="black",type="b")  # Civil conflict 
+lines(d$Year,d$war.p,lwd=2,lty=2,col="grey10",type="b") # Civil war
+
+# Add labels
+text(2015.5,d[34,5],labels="Civil war \n or conflict",cex=1.5)
+text(2015.5,d[34,6],labels="Civil war",cex=1.5)
+
+# Axis
+axis(1,at=seq(1980,2015,5),tck=0.02, cex.axis=1.5,col="white")
+axis(2,at=seq(0,.35,.05),las=1,tck=0.02,cex.axis=1.5,col="white")
+text(1980,.36,"Proportion \n of countries",cex=1.5)
+
+#**************************************
+#### Figure: incidence and onset ####
+#**************************************
+
+## Aggregate data
+d<-df.New[,c("year","country","war","war.onset")]
+d[is.na(d)]<-0
+d<-aggregate(cbind(war,war.onset)~year,d,FUN=sum)
+year<-1981:2013
+
+## Plot data
+par(mar=c(3,5,3,3),family="serif")
+plot(year,d$war,type="h",axes=F,xlab="",ylab="",
+     col="gray80",ylim=c(0,8),lwd=20,lend=1)
+par(new=TRUE)
+plot(year,d$war.onset,type="h",xlab="",ylab="",col="grey20",
+     axes=FALSE,ylim=c(0,8),lwd=20,lend=1)
+
+# Axis
+axis(1,las=1,at=seq(1980,2015,5),tck=0.02,cex.axis=1.5,col="white")
+axis(2,las=1,at=seq(0,10,1),tck=0.02,cex.axis=1.5,col="white")
+abline(h=seq(0,10,1), col="white",lwd=3)
+
+# Legend
+legend(2000,8,c("Ongoing wars","New wars"),
+       cex=1.5,lwd=10,col=c("gray80","grey20"),bty="n",
+       y.intersp=c(0.25),x.intersp=c(0.25))
 
 #**************************************
 #### TABLE 9 (annex) ####
@@ -259,3 +330,45 @@ d$yhat<-predict(p1)
 iv7<-lm(war_prio_on~yhat+factor(ccode)+factor(year)+factor(ccode)*year,d)
 clse(iv7,1,iv7$model[,3])
 mse(iv7)
+
+#**************************************
+##### Figure: coefficient plot #####
+#**************************************
+
+## Vectors with mu, sd, variable names, and y-axis settings
+var.names<-c("Narrow replication \n 1981-2006",
+             "ACD updated \n 1981-2006",
+             "GDP growth updated \n 1981-2006",
+             "Commodity prices updated \n 1981-2006",
+             "All data updated \n 1981-2006",
+             "Extending period \n 1981-2013",
+             "Including civil conflict \n 1981-2013")
+             
+mu1<-c(-0.05914086,-0.019920948,-0.056119524 ,-0.038480482,-0.02042361,-0.01008197,0.0319266)
+sd1<-c(0.028620376,0.015444291,0.030341211,0.025241068,0.01679852,0.00944932,0.0317275)
+
+y.axis<-length(var.names):1 
+
+## Plot data 
+par(mgp=c(5,1,0),mar=c(5,15,5,1),family="serif")
+plot(mu1,y.axis,type="n",axes=F,xlab="", ylab="",main="",
+     xlim=c(min(mu1-qnorm(.975)*sd1),max((mu1+qnorm(.975)*sd1))),
+     ylim=c(min(y.axis),max(y.axis)))
+
+# Trimmings
+rect(-.1109949,0,-.0072868,8,col="grey90",lwd=0)
+abline(v=-.0591409,lwd=1,lty=2)
+abline(v=0,lwd=1)
+
+# Estimates and intervals
+segments(mu1-qnorm(.975)*sd1,y.axis,mu1+qnorm(.975)*sd1,y.axis,
+         lwd=5,col="grey50",lend=1)
+segments(mu1-qnorm(.84)*sd1,y.axis,mu1+qnorm(.84)*sd1,y.axis,
+         lwd=6,lend=1)
+points(mu1,y.axis,type="p",col="black",pch=19,cex=2,
+       xlim=c(min(mu1-qnorm(.975)*sd1),max((mu1+qnorm(.975)*sd1))),
+       ylim=c(min(y.axis),max(y.axis)),main="")
+    
+# Axis
+axis(2,at=y.axis,label=var.names,las=1,tick=F,mgp=c(2,.6,0),cex.axis=1.5,col="white") 
+axis(1, tick=F,line=1,cex.axis=1.5)
