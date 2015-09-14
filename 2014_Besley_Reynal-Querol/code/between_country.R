@@ -5,19 +5,20 @@
 # First version: 07-08-2014
 #******************************************************************************
 
+setwd("[SPECIFY DIR]")
 rm(list=ls(all=TRUE)) # Clear workspace
-options(scipen=4)     # Preferences
+options(scipen=4)     # # Preferences
 
 ## Libraries
+library(car)
+library(countrycode)
+library(lmtest)
 library(foreign)
 library(sandwich)
-library(lmtest)
-library(countrycode)
-library(car)
 
 ## Load data
-d<-read.dta("2014_Besley_Reynal-Querol/raw_data/table2.dta")
-load("2014_Besley_Reynal-Querol/tidy_data/conflict_data.Rdata")
+d<-read.dta("raw_data/table2.dta")
+load("tidy_data/conflict_data.Rdata")
 
 #### Figure: War prevalance ####
 par(mar=c(5,6,2,2))
@@ -54,7 +55,6 @@ abline(fit,lty=4)
 
 ## There are some countries with potential high leverage or outliers:
 # Sudan, Angola, Ethiopia, Nigeria, Morocco, Mali
-
 
 #### Replication ####
 
@@ -130,7 +130,6 @@ abline(a=0,b=1)
 
 d$ccode<-countrycode(d$country,"country.name","iso3c",warn=TRUE)
 d<-merge(d,df[,-5],all.x=TRUE)
-
 
 ## Most recent data
 a1<-lm(war.paper~WarPrevalence14001700+lrgdpl2631970+region_nNUNN+
