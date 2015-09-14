@@ -1,6 +1,7 @@
 #******************************************************************************
 # Replication of Besley and Reynal-Querrol (2014)
 # "The Legacy of Historical Conflict: Evidence from Africa"
+# Between-country estimation
 # This version:  09-06-2015
 # First version: 07-08-2014
 #******************************************************************************
