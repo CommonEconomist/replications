@@ -1,19 +1,18 @@
 #******************************************************************************
+# Create outcome variables country cross-section
 # This version:  23-04-2015
 # First version: 15-01-2014
-# Create outcome variables country cross-section
 #******************************************************************************
 
 setwd("[SPECIFY DIR]")
 
 ## Libraries
-library(countrycode)
 library(arm)
+library(countrycode)
 
 ## Load data
 polity<-read.csv("raw_data/p4v2012.csv",sep=",",header=TRUE,row.names=NULL)
 acd<-read.csv("raw_data/acd2013.csv",header=TRUE,sep=",",row.names=NULL)
-
 
 #### Date of independence ####
 
