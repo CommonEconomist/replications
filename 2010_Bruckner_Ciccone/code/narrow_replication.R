@@ -17,12 +17,9 @@ library(mfx)
 library(Zelig)
 
 ## Load data and functions
+## Load data and functions
+source("code/functions.R") 
 df<-read.dta("raw_data/data.dta")
-source("code/clse.R") # For robust standard clustered errors
-mse <- function(sm) { 
-    mse <- mean(sm$residuals^2)
-    return(mse)
-}
 
 ## Data for IV-estimation and vector for clustered errors
 d<-df[!is.na(df$war_prio_on) & !is.na(df$ind),]
