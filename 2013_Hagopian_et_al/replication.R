@@ -3,14 +3,46 @@
 # Hagopian et al. (2013)
 # http://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1001533
 # Script is based on original python script
-# This version:  21-11-2014
+# This version:  16-09-2015
 # First version: 29-11-2013
 #******************************************************************************
 
-## Load data
+#**************************************
+#### LOAD ####
+#**************************************
+
+## Data
 deaths<-read.csv("2013_Hagopian_et_al/hh_deaths.csv",header=TRUE,sep=",",row.names=NULL)
 households<-read.csv("2013_Hagopian_et_al/hh_roster.csv",header=TRUE,sep=",",row.names=NULL)
 population<-read.csv("2013_Hagopian_et_al/pop.csv",header=TRUE,sep=",",row.names=NULL)
+
+## Bootstrap function
+# Code taken from: http://biostatmatt.com/archives/2125
+# NB - the code calls itself
+
+# Bootstrap resample function
+resample <- function(dat, cluster, replace) {
+  
+  # exit early for trivial data
+  if(nrow(dat) == 1 || all(replace==FALSE))
+    return(dat)
+  
+  # clustering factor
+  cft <- dat[[cluster[1]]]
+  
+  # sample the clustering factor
+  cls <- sample(unique(cft), replace=replace[1])
+  
+  # subset on the sampled clustering factors
+  sub <- lapply(cls, function(b) subset(dat, cft==b))
+  
+  # sample lower levels of hierarchy (if any)
+  if(length(cluster) > 1)
+    sub <- lapply(sub, resample, cluster=cluster[-1], replace=replace[-1])
+  
+  # join and return samples
+  do.call(rbind, sub)
+}
 
 #**************************************
 #### CLEAN DATA ####
@@ -64,12 +96,9 @@ d.pre<-sum(deaths$norm_pre) # Pre-war (44)
 d.during<-sum(deaths$norm_dum) # Normal during war (262)
 d.war<-sum(deaths$col) # Fatalities (76)
 
-#**************************************
-#### CALCULATE PERSON-YEARS ####
-#**************************************
+#### Calculate exposure: households ####
 
-#### Households ####
-
+## Year of birth and year household formed
 households$yob<-2011.5-(households$age+0.5)
 households$hh_f<-households$year_hh_formed+0.5
 
@@ -81,7 +110,7 @@ households$t1<-2003.167
 households$t0<-apply(households[,c("hh_f","t0")],1,max)
 households$t1<-apply(households[,c("hh_f","t1")],1,max)
 
-# Exposure
+## Exposure
 households$exp0<-households$t1-households$yob
 households[households$yob<=households$t0,]$exp0<-
   households[households$yob<=households$t0,]$t1-
@@ -97,15 +126,16 @@ households$t1<-2011.5
 households$t0<-apply(households[,c("hh_f","t0")],1,max)
 households$t1<-apply(households[,c("hh_f","t1")],1,max)
 
-# Exposure
+## Exposure
 households$exp1<-households$t1-households$yob
 households[households$yob<=households$t0,]$exp1<-
   households[households$yob<=households$t0,]$t1-
   households[households$yob<=households$t0,]$t0
 sum(households$exp1) # 73282.96
 
-#### Deaths ####
+#### Calculate exposure: deaths ####
 
+## Year of birth and year household formed
 deaths$yod<-deaths$yod+(deaths$mod-0.5)/12
 deaths$hh_f<-deaths$year_hh_formed+.5
 
@@ -113,11 +143,11 @@ deaths$hh_f<-deaths$year_hh_formed+.5
 deaths$t0<-2001
 deaths$t1<-2003.167
 
-# Account for household formation
+## Account for household formation
 deaths$t0<-apply(deaths[,c("hh_f","t0")],1,max)
 deaths$t1<-apply(deaths[,c("hh_f","t1")],1,max)
 
-# Exposure
+## Exposure
 deaths$exp0<-deaths$t1-deaths$yod
 deaths[deaths$yod>deaths$t1,]$exp0<-deaths[deaths$yod>deaths$t1,]$t1-
   deaths[deaths$yod>deaths$t1,]$t0
@@ -145,8 +175,10 @@ deaths[deaths$yod>=deaths$t0 & deaths$yod<=deaths$t1,]$exp1<-
 sum(deaths$exp1) # 1227.82
 
 #**************************************
-#### CALCULATIONS ####
+#### ANALYSIS ####
 #**************************************
+
+#### Central estimates ####
 
 ## Person-years
 py0<-sum(households$exp0)+sum(deaths$exp0) # Pre-war: 15215.72
@@ -168,37 +200,7 @@ excess*py/1000
 dr<-1000*d.war/py1
 dr*py/1000 
 
-#**************************************
-#### BOOTSTRAPS ####
-#**************************************
-
-# Bootstrap resampling
-# Code taken from: http://biostatmatt.com/archives/2125
-# NB - the code calls itself
-
-# Bootstrap resample function
-resample <- function(dat, cluster, replace) {
-  
-  # exit early for trivial data
-  if(nrow(dat) == 1 || all(replace==FALSE))
-    return(dat)
-  
-  # clustering factor
-  cft <- dat[[cluster[1]]]
-  
-  # sample the clustering factor
-  cls <- sample(unique(cft), replace=replace[1])
-  
-  # subset on the sampled clustering factors
-  sub <- lapply(cls, function(b) subset(dat, cft==b))
-  
-  # sample lower levels of hierarchy (if any)
-  if(length(cluster) > 1)
-    sub <- lapply(sub, resample, cluster=cluster[-1], replace=replace[-1])
-  
-  # join and return samples
-  do.call(rbind, sub)
-}
+#### BOOTSTRAP ESTIMATES ####
 
 ## Append all required data
 d<-aggregate(cbind(col,norm_pre,norm_dum,exp0,exp1)~hh+cluster+gov,deaths,FUN=sum)
@@ -232,7 +234,6 @@ set.seed(2014);system.time(b.exp1<-replicate(1000,sum(resample(dat,cluster,c(F,T
 
 probs<-(1+c(-1,1)*0.95)/2 # 95% interval
 
-
 ## Excess deaths
 a<-1000*(d1+v)/b.exp1-1000*d0/b.exp0
 b<-a*py/1000
@@ -255,7 +256,7 @@ violent.deaths<-b
 quantile(a,probs=probs) # 0.72; 1.37
 quantile(b,probs=probs) # 175266; 334831
 
-#### Figure ####
+#### Figure: Bootstrap estimates ####
 library(PerformanceAnalytics)
 library(psych)
 options(scipen=4)     
