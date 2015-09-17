@@ -15,7 +15,7 @@ Title | Folder | Replication result
 [Mortality in Iraq Associated with the 2003–2011 War and Occupation: Findings from a National Cluster Sample Survey by the University Collaborative Iraq Mortality Study](http://www.plosmedicine.org/article/info%3Adoi%2F10.1371%2Fjournal.pmed.1001533)|`2013_Hagopian_et_al`|Succesful
 [The Legacy of Historical Conflict: Evidence from Africa](http://dx.doi.org/10.1017/S0003055414000161)|`2014_Besley_Reynal-Querol`|Successful
 [Contagious Rebellion and Preemptive Repression](http://jcr.sagepub.com/content/58/2/254.abstract)|`2014_Danneman_Ritter`| Successful
-[Rising Food Prices, Food Price Volatility, and Social Unrest](http://ajae.oxfordjournals.org/content/97/1/1) | `2015_Bellemare` | Succesful
+[Rising Food Prices, Food Price Volatility, and Social Unrest](http://ajae.oxfordjournals.org/content/97/1/1) | `2015_Bellemare` | Successful
 
 
 
