@@ -9,7 +9,7 @@ Below is a table with the covered studies and replication result, see the indivi
 Title | Folder | Replication result
 ---|---------|-------
 [Warming increases the risk of civil war in Africa](http://www.pnas.org/content/106/49/20670)|`2009_Burke_et_al`|Successful
-[International Commodity Prices, Growth and the Outbreak of Civil War in Sub-Saharan Africa](http://onlinelibrary.wiley.com/doi/10.1111/j.1468-0297.2010.02353.x/abstract)|`2010_Bruckner_Ciccone`|Succesful
+[International Commodity Prices, Growth and the Outbreak of Civil War in Sub-Saharan Africa](http://onlinelibrary.wiley.com/doi/10.1111/j.1468-0297.2010.02353.x/abstract)|`2010_Bruckner_Ciccone`|Successful
 [Pattern in Escalations in Insurgent and Terrorist Activity](http://www.sciencemag.org/content/333/6038/81.abstract)|`2011_Johnson_et_al`|Successful
 [Modest, Secure, and Informed: Successful Development in Conflict Zones](https://www.aeaweb.org/articles.php?doi=10.1257/aer.103.3.512)|`2013_Berman_et_al`|Partially succesful
 [Mortality in Iraq Associated with the 2003–2011 War and Occupation: Findings from a National Cluster Sample Survey by the University Collaborative Iraq Mortality Study](http://www.plosmedicine.org/article/info%3Adoi%2F10.1371%2Fjournal.pmed.1001533)|`2013_Hagopian_et_al`|Succesful
