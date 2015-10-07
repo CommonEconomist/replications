@@ -23,3 +23,5 @@ The following files are needed for replication:
 * `clse.R` is the code to calculate robust standard errors
 * `replication.R` replicates the results
 
+**Update (07-10-2015):** I now also included code (`MLM-VI`) to estimate the model using a multilevel model with a varying intercept, as is done [here](http://www.pnas.org/content/111/6/2054).  
+
