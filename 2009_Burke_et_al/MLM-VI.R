@@ -47,9 +47,14 @@ c.mean<-ddply(pnas,.(ccode), summarize,
          temp.ml=mean(temp_all_lag),
          prec.m=mean(prec_all),
          prec.ml=mean(prec_all_lag))
-pnas<-merge(pnas,c.mean)
 
-## Create variable vectors
+# Country-level variables (Note: These are highly correlated)
+tempm<-c.mean[,2]
+tempm.l<-c.mean[,3]
+rainm<-c.mean[,4]
+rainm.l<-c.mean[,5]
+
+## Create variable vectors (country-year level)
 incidence<-pnas$war_prio_new # Outcome variable
 
 temp<-pnas$temp_all          
@@ -57,12 +62,7 @@ temp.l<-pnas$temp_all_lag
 rain<-pnas$prec_all         
 rain.l<-pnas$prec_all_lag    
 
-## Note: these measures are highly correlated
-tempm<-pnas$temp.m           
-tempm.l<-pnas$temp.ml        
-rainm<-pnas$prec.m           
-rainm.l<-pnas$prec.ml        
-
+# Indices
 C<-as.numeric(factor(pnas$ccode))        # Country indicator
 Y<-as.numeric(factor(pnas$year_actual))  # Year indicator
 
@@ -71,43 +71,28 @@ N<-length(C)
 
 #### ANALYSIS ####
 
-## Benchmark model: simple linear model
-# Estimates are a bit off as the between-variation is not modeled properly
-lm0<-glm(incidence~(temp-tempm)+(temp.l-tempm.l)+(rain-rainm)+(rain.l-rainm.l)+Y+
-          tempm+tempm.l+rainm+rainm.l,family="gaussian")
-summary(lm0)
-
-## Benchmark: multilevle model with lmer
-# Varying intercept model, maximum likelihood estimation
-# Results are almost identical to those reported. 
-m0<-lmer(incidence~(temp-tempm)+(temp.l-tempm.l)+(rain-rainm)+(rain.l-rainm.l)+Y+
-           tempm+tempm.l+rainm+rainm.l + (1| C),REML=FALSE)
-summary(m0)
-
-## JAGS estimation: Linear model based on Bell & Jones (2015)
-# Variables are demeaned and country average for time-invariant variables
-# is included as a between effect.
-# Note that unlike in the B&J notation, the intercept should be modeled as a
-# varying intercept!
+## JAGS estimation: Linear model based on Bell & Jones (2015).
+# Model specification based on Bafumi & Gelman (2006).
+# This means that I just include the country-mean at the
+# varying intercept level and don't have to demean the variables
 
 # Model function
 M <- function() {
   for(i in 1:N) {
     incidence[i] ~ dnorm(yhat[i],tau)
-    yhat[i] <- b0[C[i]] + b1*(temp[i]-tempm[i]) + b2*(temp.l[i]-tempm.l[i]) +
-      b3*(rain[i]-rainm[i]) + b4*(rain.l[i]-rainm.l[i]) + b5*Y[i] +
-      b6*tempm[i] + b7*tempm.l[i] + b8*rainm[i]+ b9*rainm.l[i]   
-    
+    yhat[i] <- b0[C[i]] + b1*temp[i] + b2*temp.l[i] + 
+      b3*rain[i] + b4*rain.l[i] + b5*Y[i] 
+          
     # Predicted values
     fit[i] <-yhat[i]
   }
-  
+   
   for (j in 1:J) {
     b0[j] ~ dnorm(mu.b0[j], tau.b0)
-    mu.b0[j]<-b00
+    mu.b0[j]<-b00 + b6*tempm[j] + b7*tempm.l[j] + b8*rainm[j]+ b9*rainm.l[j]   
     
   }
-  
+   # Priors and hyperpriors
   b1 ~ dnorm(0, 0.001)   
   b2 ~ dnorm(0, 0.001)
   b3 ~ dnorm(0, 0.001)
@@ -130,10 +115,9 @@ dat<-list(N=N,Y=Y,C=C,J=J,
           incidence=incidence,temp=temp,temp.l=temp.l,rain=rain,rain.l=rain.l,
           tempm=tempm,tempm.l=tempm.l,rainm=rainm,rainm.l=rainm.l)
 m1<-jags(data=dat,inits=NULL,model.file=M,
-         parameters.to.save=c('b0','b1','b2','b3','b4','b5','b6','b7','b8','b9'),
+         parameters.to.save=c('b00','b1','b2','b3','b4','b5','b6','b7','b8','b9'),
          n.chains=3,n.iter=10000,n.burnin=5000,n.thin=4)
 print(m1,digits.summary=3);plot(m1)
-
 
 ## Fitted values
 m.fit<-jags(data=dat,inits=NULL,model.file=M,
