@@ -13,6 +13,7 @@ For the direct replication I found that most results can be reproduced although 
 These differences are caused by a small-sample adjustment in the calculations of the robust clustered standard errors.
 I wasn't able to replicate the logit model including country and year fixed effects and country-specific time trends. 
 Updating the data and extending data to cover the period 1981-2013 I did not find a statistically significant link between international commodity prices and conflict in Sub-Sahara Africa, as shown in the figure below. 
+However, the link between economic growth in OECD export countries and civil war onset in Africa persists, where higher growth rates reduce the likelihood of conflict outbreak. 
 
 ![](http://i.imgur.com/6bnDoBn.png)
 
