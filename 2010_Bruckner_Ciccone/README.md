@@ -29,9 +29,11 @@ The following folders and files are included for the replication:
 
 `code` contains all the `R`-scripts needed to run the replication. This includes creating the new data
 * `functions.R` code to calculate robust standard errors and mean squared error
-* `narrow_replication.R` direct replciation of the results. Uses `data.dta`
-* `scientific_replication.R` re-estimates the model using newer data and extending the time period. This requires `new_data.R` to be run first. 
-* `new_data.R` creates the dataset for the scientific replication. Creates `newData.Rdata` which can be found in `tidy_data`
+* `replication.R` direct replciation of the results. Uses `data.dta`
+* `reanalysis.R` re-estimates the model using newer data and extending the time period. This requires `new_data.R` to be run first. 
+* `newData.R` creates the dataset for the scientific replication. Creates `newData.Rdata` which can be found in `tidy_data`
+* `replication.do` is the original replication script for STATA
+* `se.do` is a test file for checking the standard errors in STATA 
 
 
 
