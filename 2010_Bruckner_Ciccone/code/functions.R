@@ -1,5 +1,3 @@
-##### FUNCTIONS ####
-
 ##### Robust clustered standard errors ####
 # Source:
 # http://people.su.se/~ma/mcluster.R
