@@ -16,8 +16,7 @@ Title | Folder | Replication result
 [The Legacy of Historical Conflict: Evidence from Africa](http://dx.doi.org/10.1017/S0003055414000161)|`2014_Besley_Reynal-Querol`|Successful
 [Contagious Rebellion and Preemptive Repression](http://jcr.sagepub.com/content/58/2/254.abstract)|`2014_Danneman_Ritter`| Successful
 [Rising Food Prices, Food Price Volatility, and Social Unrest](http://ajae.oxfordjournals.org/content/97/1/1) | `2015_Bellemare` | Successful
-[Climate change, rainfall, and social conflict in Africa](http://jpr.sagepub.com/content/49/1/35.abstract) |
-`2012_Hendrix_Salehyan` | Partially sucessful
+[Climate change, rainfall, and social conflict in Africa](http://jpr.sagepub.com/content/49/1/35.abstract) | `2012_Hendrix_Salehyan` | Partially sucessful
 
 
 
