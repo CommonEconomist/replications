@@ -1,12 +1,9 @@
-#******************************************************************************
-# Best-fit power-law progress curve for Afghanistan
-# and IEDs
+##### Best-fit power-law progress curve for Afghanistan IEDs ####
 # Based on Johnson et al. (2011, Science)
 # "Pattern in Escalations in Insurgent and Terrorist Activity"
+# http://www.sciencemag.org/content/333/6038/81.abstract
 # This version:  13-07-2015
 # First version: 10-07-2015
-#******************************************************************************
-
 rm(list=ls(all=TRUE)) # Clear workspace
 options(scipen=4)     
 
@@ -16,8 +13,7 @@ library(devtools)
 ## Functions
 source_url("https://raw.githubusercontent.com/sjmurdoch/fancyaxis/master/fancyaxis.R")
 
-
-## Load data
+## Data
 d<-read.csv("2011_Johnson_et_al/afghanistan.csv",header=TRUE,stringsAsFactors=FALSE)
 d<-na.omit(d) # Remove last values without Tau. 
 
