@@ -7,11 +7,15 @@
 # See:
 # http://www.jstor.org/stable/2235494
 # http://www.sciencedirect.com/science/article/pii/S0304407601001087
+options(scipen=4)                     
 
 ## Load data
 require(foreign)
 dta<-read.dta("~/Desktop/H_S_JPR_491_Replication_Revised.dta")
-options(scipen=4)                     
+
+## Code for clustered standard errors
+require(devtools)
+source_url("https://raw.githubusercontent.com/CommonEconomist/Rcode/master/clse.R")
 
 #### Table 2: Effect of rainfall on conflict onset ####
 
