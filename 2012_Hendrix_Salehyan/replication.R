@@ -11,7 +11,7 @@ options(scipen=4)
 
 ## Load data
 require(foreign)
-dta<-read.dta("~/Desktop/H_S_JPR_491_Replication_Revised.dta")
+dta<-read.dta("Replications/2012_Hendrix_Salehyan/H_S_JPR_491_Replication_Revised.dta")
 
 ## Code for clustered standard errors
 require(devtools)
@@ -111,3 +111,5 @@ m11<-glm.nb(nongov_targeted_events~nongov_targeted_events_l+
              GPCP_precip_mm_deviation_sd_l+GPCP_precip_mm_deviation_sd_l_sq+
              polity2+polity2_sq+log_pop_pwt+log_pop_pwt_fd+log_rgdpch_pwt+
              grgdpch_pwt+incidence+ttrend+factor(year)+factor(ccode),test);summary(m11)
+
+
