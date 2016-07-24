@@ -1,7 +1,7 @@
 Climate change, rainfall, and social conflict in Africa
 ==============
 
-**Replication status:** *Partially succesfull*
+**Replication status:** *Partially succesful*
 
 The study by Hendrix & Salehyan ([2012](http://jpr.sagepub.com/content/49/1/35.abstract)) was published in a special issue of the JPR on climate change and conflict. Their study is one of the first that looks at a broader definition of conflict, to include riots, strikes, and protests next to violent armed conflict. 
 They claim to find a robust link between weather variation and unrest: extreme deviations in rainfall are associated with all types of social unrest but particularly with violent ones. 
