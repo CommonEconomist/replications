@@ -18,6 +18,7 @@ Title | Folder | Replication result
 [Rising Food Prices, Food Price Volatility, and Social Unrest](http://ajae.oxfordjournals.org/content/97/1/1) | `2015_Bellemare` | Successful
 [Climate change, rainfall, and social conflict in Africa](http://jpr.sagepub.com/content/49/1/35.abstract) | `2012_Hendrix_Salehyan` | Partially sucessful
 [Using Power Laws to Estimate Conflict Size](http://jcr.sagepub.com/content/59/7/1216) | `2014_Friedman` | Successful
+Partisan Politics in the Global Economy | `1998_Garrett` | Partially successful
 
 
 
