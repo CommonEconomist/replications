@@ -42,6 +42,7 @@ fig<-data.frame(country=country,mae=error,
 fig<-fig[order(fig$mae),]
 fig$country<-factor(fig$country,levels=fig$country)
 
+## Figure
 par(mar=c(4.5,6.2,1,0),pty="s",las=1,cex.axis=1.5,cex.lab=1.5)
 plot(fig$mae,fig$country,xlab="Mean absolute error",ylab="",main="",axes=FALSE,
      pch=19,cex=1.5,xlim=c(0,3.25))
@@ -49,3 +50,6 @@ segments(rep(0,nrow(fig)),1:nrow(fig),fig$reported,lend=2,lty=2,lwd=.75)
 points(fig$reported,fig$country,pch=0,cex=1.5)
 axis(1,tick=FALSE)
 axis(2,at=1:nrow(fig),label=fig$country,tick=FALSE,las=1)
+
+legend(1.8,3,c("Reported","Estimated"),cex=1.5,pch=c(0,19),
+       bty="n",y.intersp=c(0.3))
