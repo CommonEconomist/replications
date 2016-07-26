@@ -34,13 +34,18 @@ for (i in 1:J){
 }
 
 ## 5) Plot results
-fig<-data.frame(country=country,mae=error)
+fig<-data.frame(country=country,mae=error,
+                reported=c(1.3,1.6,1.7,1.7,
+                           2.0,1.2,1.4,1.7,
+                           3.2,1.6,1.5,1.2,
+                           1.7,1.9))
 fig<-fig[order(fig$mae),]
 fig$country<-factor(fig$country,levels=fig$country)
 
 par(mar=c(4.5,6.2,1,0),pty="s",las=1,cex.axis=1.5,cex.lab=1.5)
 plot(fig$mae,fig$country,xlab="Mean absolute error",ylab="",main="",axes=FALSE,
      pch=19,cex=1.5,xlim=c(0,3.25))
-segments(rep(0,nrow(fig)),1:nrow(fig),fig$mae,lend=2,lty=2,lwd=.75)
+segments(rep(0,nrow(fig)),1:nrow(fig),fig$reported,lend=2,lty=2,lwd=.75)
+points(fig$reported,fig$country,pch=0,cex=1.5)
 axis(1,tick=FALSE)
 axis(2,at=1:nrow(fig),label=fig$country,tick=FALSE,las=1)
