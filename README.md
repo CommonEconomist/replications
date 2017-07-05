@@ -20,7 +20,7 @@ Title | Folder | Replicated?
 [Climate change, rainfall, and social conflict in Africa](http://jpr.sagepub.com/content/49/1/35.abstract) |`2012_Hendrix_Salehyan` | Partially 
 [Using Power Laws to Estimate Conflict Size](http://jcr.sagepub.com/content/59/7/1216) | `2014_Friedman` | Successful
 Partisan Politics in the Global Economy | `1998_Garrett` | Partially 
-[Location, Location, Location: An MCMC Approach to Modeling the Spatial Context of War and Peace](http://pan.oxfordjournals.org/content/10/3/244.abstract) |`2002_ward_gleditsch` | More or less
+[Location, Location, Location: An MCMC Approach to Modeling the Spatial Context of War and Peace](http://pan.oxfordjournals.org/content/10/3/244.abstract) |`2002_Ward_Gleditsch` | More or less
 [Spatial Econometric Models of Cross-Sectional Interdependence in Political Science Panel and Time-Series-Cross-Section Data](https://academic.oup.com/pan/article-abstract/15/2/140/1564984) | `2007_Franzese_Hayes`| No
 
 
