@@ -1,11 +1,9 @@
 # Replications
 
-Given the cumulative nature of research, my work often build upon that of others. 
-This entails that in order to familiarise myself with certain subjects I try to replicate existing papers. 
-Additionally, I often use data from existing studies to test out different estimation methods.
-This repository contains the results of the studies that I have replicated along with the code and data. 
-The table below provides an overview of the replicated studies and whether the replication was successful or not. 
-For more details on the individual studies; please see their respective folder. 
+This repository contains data and code for a number of studies that I have tried to replicate. 
+These replication exercises are often the result of trying to familiarise myself with certain methods, testing things out in R, or just procrastination. 
+The table below provides an overview of the replicated studies and whether the replication was successful or not. For more details on the individual studies; please consult the respective folder. 
+
 
 Title | Folder | Replicated?
 ---|---------|-------
