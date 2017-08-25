@@ -1,6 +1,5 @@
 ## Replication "Vector Autoregressions"
 # Stock & Watson (2001)
-# https://www.aeaweb.org/articles?id=10.1257/jep.15.4.101
 
 # Given that the provided replication data for this paper is only available 
 # in a RATS data file, the data needs to be build from scratch following
@@ -13,6 +12,7 @@
 setwd("~/Dropbox/github/replications/2001_Stock_Watson")
 
 #### Prepare data ####
+# NB - Can probably download this data using quantmod package
 require(dplyr)
 
 # Inflation rate
@@ -37,7 +37,7 @@ R<-aggregate(R,nfrequency=4,FUN=mean)
 
 R<-window(R,start=c(1960,1),end=c(2000,4))
 
-x<-cbind(pi,u,R)
+x<-cbind(pi,u,R) # Combine data
 
 #### Plot data ####
 par(mar=c(5,5,2,2),mfrow=c(3,1),las=1,bty="n",cex.lab=2,cex.axis=2,cex.main=2)
@@ -47,7 +47,6 @@ plot(R,axes=FALSE,xlab="",ylab="",main="Interest rate",lwd=2)
 axis(1,tick=FALSE);axis(2,tick=FALSE)
 
 #### Estimate model ####
-# TO DO: Replicate table 1 (Granger causality, variance decomposition)
 library(vars)
 m<-VAR(x,p=4) # Fit VAR with 4 lags
 
@@ -57,7 +56,7 @@ u.i<-irf(m,impulse="u",ci=.95,runs=1000,seed=42,n.ahead=24)   # Unemployment
 R.i<-irf(m,impulse="R",ci=.95,runs=1000,seed=42,n.ahead=24)   # Interest rate
 
 # Plot results
-# NB - Having difficulties in chaning the plot lay out
+# NB - Having difficulties in changing the plot lay out
 # Shape of IRF is similar to those reported in paper, only some minor 
 # differences here and there in estimated magnitude. 
 par(pty="s",bty="n")
@@ -65,27 +64,33 @@ plot(pi.i)
 plot(u.i)
 plot(R.i)
 
-
 #### Test with Bayesian VAR estimation ####
+# NB - better options for granger causality test and variance decomposition
 detach("package:vars",unload=TRUE)
 require(MSBVAR)
-m2<-reduced.form.var(x,4,z=NULL)
-dfev(m2,k=12) # Variance decomposition
+m<-reduced.form.var(x,4,z=NULL) # Estimate model, 4 lags
 
-m2.irf<-irf(m2,nsteps=24)
-plot(m2.irf)
+# Test Granger causality
+granger.test(x,4) # Results far off from those reported in table 1 panel a
+
+# Variance decomposition
+dfev(m,k=12) # Again, substantial differences
+
+# Impulse response function
+m.irf<-irf(m,nsteps=24) # 24 steps ahead
+plot(m.irf) # Strangely pretty much as in the paper.
 
 # Try to get uncertainty level with MC simulation
-imp<- mc.irf(m2,nsteps=24, draws=2000)
-plot(imp,method="Percentile",probs=c(.16,.84)) # Strange
+m.irf2<- mc.irf(m,nsteps=24, draws=2000)
+plot(m.irf2,method="Percentile",probs=c(.16,.84)) # All over the place
 
-imp<- mc.irf(m2,nsteps=4, draws=100)
-plot(imp,method="Percentile",probs=c(.16,.84)) # Problem persists
+m.irf2<-mc.irf(m,nsteps=4,draws=2000) # Reduce forecast horizon
+plot(m.irf2,method="Percentile",probs=c(.16,.84)) # Problem persists
 
 # BVAR model
 # NB - mc.irf gives same weird IRF plot
-m2.bvar<-szbvar(x,p=4,z=NULL,
+m.bvar<-szbvar(x,p=4,z=NULL,
                  lambda0=1,lambda1=1,lambda3=1,lambda4=1,lambda5=0,
                 mu5=1,mu6=1,nu=4,qm=4,prior=1, posterior.fit=TRUE)
-plot(irf(m2.bvar,nsteps=24))
+plot(irf(m.bvar,nsteps=24))
 
