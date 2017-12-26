@@ -1,12 +1,12 @@
 ## Replication "Using Power Laws to Estimate Conflict Size"
 # http://jcr.sagepub.com/content/59/7/1216
-require(foreign)
-dat<-read.dta("American Indian Wars event data.dta")
+library(haven)
+library(poweRlaw)
+
+dat<-read_dta("data/American Indian Wars event data.dta")
 x<-dat$recordeduscasualties # Change data according to taste
 
-#------------------------------------------------------------------------------
-#### 1) Fit power law to data ####
-require(poweRlaw)
+#### Fit power law to data ####
 pl=displ$new(na.omit(x)) 
 est=estimate_xmin(pl)
 pl$setXmin(est)
@@ -15,8 +15,7 @@ plot(pl);lines(pl,col="red") # Visual inspection
 Xmin<-pl$xmin
 alpha<-pl$pars
 
-#------------------------------------------------------------------------------
-#### 2) Calculate missing values ####
+#### Calculate missing values ####
 
 ## Indices
 a=1:max(x,na.rm=TRUE)
@@ -42,4 +41,7 @@ Proj<-c()
 for (j in 1:Xmin-1){
   Proj[j]=lambda*a[j]^((-1)*alpha)*1/Z
 }
+
 R<-a[1:length(Proj)]*Proj # Number of fatalities
+
+## FIN

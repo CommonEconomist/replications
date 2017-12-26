@@ -1,9 +1,9 @@
 ## Test fatality interpolation for Iraq
 # Using method from Friedman (2014)
 # http://jcr.sagepub.com/content/59/7/1216
-setwd("~/Dropbox/github/marginalia/conflict_size")
-require(poweRlaw)
 options(scipen=4)
+library(poweRlaw)
+
 #source("code/clean_data.R") # Run twice because of error, takes some seconds
 load("data/input.RData")
 source("code/functions.R")
