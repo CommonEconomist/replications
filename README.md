@@ -24,6 +24,7 @@ In some incidental cases I have written up the results of the replication (see l
 14. Taking time seriously 
 15. Not all oil price shocks are alike 
 16. Vector Autoregressions 
-15. The economic costs of conflict: A case study of the Basque Country 
-17. Improving predictions using ensemble Bayesian model averaging 
+17. The economic costs of conflict: A case study of the Basque Country 
+18. Improving predictions using ensemble Bayesian model averaging 
+19. Trends and fluctuations in the severity of interstate wars
 
