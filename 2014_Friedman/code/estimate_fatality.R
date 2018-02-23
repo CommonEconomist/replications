@@ -8,7 +8,7 @@ library(poweRlaw)
 load("data/input.RData")
 
 # Fit power law
-x<-ged2
+x<-wikileaks
 pl=displ$new(x)
 est=estimate_xmin(pl)
 pl$setXmin(est);pl
