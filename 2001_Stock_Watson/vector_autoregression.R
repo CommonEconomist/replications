@@ -9,7 +9,7 @@
 # https://fred.stlouisfed.org/series/UNRATE
 # https://fred.stlouisfed.org/series/FEDFUNDS 
 # Only the interest rate is not seasonally adjusted
-setwd("~/Dropbox/github/replications/2001_Stock_Watson")
+setwd("~/github/replications/2001_Stock_Watson")
 
 #### Prepare data ####
 # NB - Can probably download this data using quantmod package
