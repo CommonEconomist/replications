@@ -18,22 +18,24 @@ axis(1,tick=F);axis(2,tick=F)
 #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
 # 3) Fit power law model to data
 pl=displ$new(d$battle_deaths)
-pl$setXmin(estimate_xmin(pl))
+pl$setXmin(estimate_xmin(pl,xmax=1e8))
 pl$setPars(estimate_pars(pl))
-pl #a=1.41,xmin=1000 -> Discrepancy
+pl #a=1.51,xmin=6252 -> Small discrepancy
 
 #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
 # 3.1) Plot data with power law fit
 # Figure 2
 par(pty='s')
 plot(pl,axes=F,
-     xlab='Battle deaths,X',ylab='Fraction of wars with at least X deaths')
+     xlab='Battle deaths, X',ylab='Fraction of wars with at least X deaths')
 lines(pl,col='red',lwd=1.5) # Takes couple of seconds
+axis(1,tick=F,at=c(1e3,1e4,1e5,1e6,1e7),label=c('10^3','10^4','10^5','10^6','10^7'))
+axis(2,tick=F)
 
 #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
 # 4) Calculate uncertainty
 # Inset figure 2: Density alpha 
-pl.u<-bootstrap(pl,no_of_sims=1000,threads=3) # Takes a couple of minutes
+pl.u<-bootstrap(pl,no_of_sims=1000,threads=3,xmax=1e8) # Will take 12 hours
 
 # Plot results
 par(pty='m')
