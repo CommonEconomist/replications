@@ -25,10 +25,8 @@ In some incidental cases I have written up the results of the replication, which
 11. *Location, location, location: An MCMC approach to modeling the spatial context of war and peace* 
 12. *Spatial econometric models of cross-sectional interdependence in political science panel and time-series-cross-section data* 
 13. *The waning of the Little Ice Age: climate Change in early modern Europe* 
-14. *Taking time seriously* 
-15. *Not all oil price shocks are alike* 
-16. *Vector Autoregressions* 
-17. *The economic costs of conflict: A case study of the Basque Country* 
-18. *Improving predictions using ensemble Bayesian model averaging* 
-19. *Trends and fluctuations in the severity of interstate wars*
+14. *Not all oil price shocks are alike* 
+15. *Vector Autoregressions* 
+16. *Trends and fluctuations in the severity of interstate wars*
+17. *Climate change and violent conflict in Europe over the last millennium*
 
