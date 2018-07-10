@@ -4,7 +4,7 @@
 # Last update: 2018 02 23
 #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
 par(mar=c(5,5,2,2),las=1,bty='n')
-setwd('~/github/replications/2018_Clauset')
+setwd('~/github/replications/clauset')
 library(plyr)
 library(poweRlaw)
 d<-read.csv('data_wars_CoWv4.txt', stringsAsFactors=FALSE,,sep='\t')
