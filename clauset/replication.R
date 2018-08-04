@@ -27,9 +27,10 @@ pl #a=1.51,xmin=6252 -> Small discrepancy
 # Figure 2
 par(pty='s')
 plot(pl,axes=F,
-     xlab='Battle deaths, X',ylab='Fraction of wars with at least X deaths')
+     xlab='Battle deaths (in thousands), X',
+     ylab='Fraction of wars with at least X deaths')
 lines(pl,col='red',lwd=1.5) # Takes couple of seconds
-axis(1,tick=F,at=c(1e3,1e4,1e5,1e6,1e7),label=c('10^3','10^4','10^5','10^6','10^7'))
+axis(1,tick=F,at=c(1e3,1e4,1e5,1e6,1e7),label=c(1,10,100,1000,10000))
 axis(2,tick=F)
 
 #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
@@ -49,3 +50,4 @@ axis(1,tick=F)
 pl.p=bootstrap_p(pl,no_of_sims=1000,seed=42,threads=3) # Also takes some time
 pl.p$p
 
+## FIN
