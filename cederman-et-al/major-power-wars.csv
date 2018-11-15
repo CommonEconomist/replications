@@ -1,0 +1,119 @@
+name,year,battle_deaths,source
+War of the League of Venice,1495,8000,Levy
+Polish-Turkish War,1497,3000,Levy
+Venetian-Turkish War,1499,4000,Levy
+First Milanese War,1499,2000,Levy
+Neapolitan War,1501,18000,Levy
+War of the Cambrian League,1508,10000,Levy
+War of the Holy League,1511,18000,Levy
+Austro-Turkish War,1512,24000,Levy
+Scottish War,1513,4000,Levy
+Second Milanese War,1515,3000,Levy
+First War of Charles V,1521,30000,Levy
+Ottoman War,1521,68000,Levy
+Scottish War,1522,3000,Levy
+Second War of Charles V,1526,18000,Levy
+Ottoman War,1532,28000,Levy
+Scottish War,1532,4000,Levy
+Third War of Charles V,1536,32000,Levy
+Ottoman War,1537,97000,Levy
+Scottish War,1542,13000,Levy
+Fourth War of Charles V,1542,47000,Levy
+Siege of Boulogne,1544,8000,Levy
+Arundel’s Rebellion,1549,6000,Levy
+Ottoman War,1551,44000,Levy
+Fifth War of Charles V,1552,51000,Levy
+Austro-Turkish War,1556,51000,Levy
+Franco-Spanish War,1556,24000,Levy
+Scottish War,1559,6000,Levy
+Spanish-Turkish War,1559,24000,Levy
+First Huguenot War,1562,6000,Levy
+Austro-Turkish War,1565,24000,Levy
+Spanish-Turkish War,1569,48000,Levy
+Austro-Turkish War,1576,48000,Levy
+Spanish-Portuguese War,1579,4000,Levy
+Polish-Turkish War,1583,17000,Levy
+War of the Armada,1585,48000,Levy
+Austro-Polish War,1587,4000,Levy
+War of the Three Henries,1589,16000,Levy
+Austro-Turkish War,1593,90000,Levy
+Franco-Savoian War,1600,2000,Levy
+Spanish-Turkish War,1610,15000,Levy
+Austro-Venetian War,1615,6000,Levy
+Spanish-Savoian War,1615,2000,Levy
+Spanish-Venetian War,1617,5000,Levy
+Spanish-Turkish War,1618,6000,Levy
+Polish-Turkish War,1618,15000,Levy
+Thirty Years’ War,1618,2071000,Levy
+Spanish-Portuguese War,1642,80000,Levy
+Turkish-Venetian War,1645,72000,Levy
+Franco-Spanish War,1648,108000,Levy
+Scottish War,1650,1000,Levy
+Anglo-Dutch Naval War,1652,26000,Levy
+Great Northern War,1654,22000,Levy
+English-Spanish War,1656,15000,Levy
+Dutch-Portuguese War,1657,4000,Levy
+Ottoman War,1657,109000,Levy
+Sweden-Bremen War,1665,2000,Levy
+Anglo-Dutch Naval War,1665,37000,Levy
+Devolutionary War,1667,4000,Levy
+Dutch War of Louis XIV,1672,342000,Levy
+Turkish-Polish War,1672,5000,Levy
+Russo-Turkish War,1677,12000,Levy
+Ottoman War,1682,384000,Levy
+Franco-Spanish War,1683,5000,Levy
+War of the League of Augsburg,1688,680000,Levy
+Second Northern War,1700,64000,Levy
+War of the Spanish Succession,1701,1251000,Levy
+Ottoman War,1716,10000,Levy
+War of the Quadruple Alliance,1718,25000,Levy
+British-Spanish War,1726,15000,Levy
+War of the Polish Succession,1733,88000,Levy
+Ottoman War,1736,38000,Levy
+War of the Austrian Succession,1739,359000,Levy
+Russo-Swedish War,1741,10000,Levy
+Seven Years’ War,1755,992000,Levy
+Russo-Turkish War,1768,14000,Levy
+Confederation of Bar,1768,14000,Levy
+American Revolution,1778,34000,Levy
+Ottoman War,1787,192000,Levy
+Russo-Swedish War,1788,3000,Levy
+French Revolutionary0Napoleonic Wars,1792,2532000,Levy
+Russo-Turkish War,1806,45000,Levy
+Russo-Swedish War,1808,6000,Levy
+War of 1812,1812,4000,Levy
+Neapolitan War,1815,2000,Levy
+Franco-Spanish War,1823,1000,COW
+Russo-Turkish War,1828,130000,COW
+Austro-Sardinian War,1848,7500,COW
+First Schleswig-Holstein War,1848,6000,COW
+Roman Republic War,1849,2600,COW
+Crimean War,1853,264000,COW
+Anglo-Persian War,1856,2000,COW
+War of Italian Unification,1859,24500,COW
+Franco-Mexican War,1862,20000,COW
+Second Schleswig-Holstein War,1864,4500,COW
+Seven Weeks’ War,1866,44000,COW
+Franco-Prussian War,1870,204000,COW
+Russo-Turkish War,1877,285000,COW
+Anglo-Egyptian War,1882,2000,COW
+Sino-French War,1884,12000,COW
+Franco-Thai War,1893,1000,COW
+Boxer Rebellion,1900,3000,PRIO
+Sino-Russian War,1900,4000,PRIO
+Russo-Japanese War,1904,111000,PRIO
+Italo-Turkish War,1911,9500,PRIO
+World War I,1914,8753000,PRIO
+Franco-Turkish War,1919,1000,PRIO
+Sino-Soviet War,1929,2000,PRIO
+Manchurian War,1931,40000,PRIO
+Italo-Ethiopian War,1935,20000,PRIO
+World War II,1939,26468000,PRIO
+Korean War,1950,1255000,PRIO
+Russo-Hungarian War,1956,3000,PRIO
+Sinai War,1956,2000,PRIO
+Sino-Indian War,1962,2000,PRIO
+Vietnam War,1965,1928000,PRIO
+Sino-Vietnamese War,1979,45000,PRIO
+Sino-Vietnamese War,1987,3000,PRIO
+Gulf War ,1990,28000,PRIO
