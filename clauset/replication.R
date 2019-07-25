@@ -1,9 +1,7 @@
 # Replication: Trends and fluctuations in the severity of interstate wars
 # http://advances.sciencemag.org/content/4/2/eaao3580
-# last update: 2019 06 04
+# last update 2019.06.04
 setwd('~/github/replications/clauset')
-
-# Libraries
 library(plyr)
 library(poweRlaw)
 

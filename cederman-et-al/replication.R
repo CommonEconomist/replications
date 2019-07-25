@@ -1,11 +1,10 @@
-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
 # Replication Cederman et al. (2011)
-# "Testing Clausewitz: Nationalism, Mass Mobilization, and the Severity of War."
+# "Testing Clausewitz: 
+# Nationalism, Mass Mobilization, and the Severity of War."
 # https://icr.ethz.ch/publications/testing-clausewitz/
-# Last update 2018 07 09
+# last update 2019.07.25
 # NB - Does not replicate
-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
-d<-read.csv('~/github/replications/cederman-et-al/major-power-wars.csv')
+d<-read.csv("~/github/replications/cederman-et-al/major-power-wars.csv")
 library(poweRlaw)
 
 # 1.1) Fit power law: 1495-1789
