@@ -8,16 +8,18 @@
 # http://projects.knmi.nl/klimatologie/daggegevens/antieke_wrn/index.html
 # Data on English Wheat prices from Clarke
 # http://faculty.econ.ucdavis.edu/faculty/gclark/data.html
+# last update 2019.07.25
+setwd("~/github/replications/kelly-o-grada")
 
-# Load data
+# DATA
 weather<-read.csv("millenium_of_weather.csv")
 wheat<-read.csv("wheat.csv")
 
-#### Fig.1 English wheat prices vs. Dutch summer temperature ####
+# FIG.1: English wheat prices vs. Dutch summer temperature 
 # Year: 1211-1500
 # Temperature average over two years previous to wheat price. 
 # Divide T by 10. 
-require(dplyr)
+library(dplyr)
 f<-data.frame(year=weather$YYYY,temp=weather$T_sum/10)
 f$temp.l<-lag(f$temp,n=1)
 f$temp.l2<-lag(f$temp,n=2)
@@ -29,20 +31,18 @@ f$temp.s.l=lag(f$temp.s,n=1)
 d<-merge(wheat,f[,c("year","temp.s.l")],all.x=TRUE)
 d<-d[d$year>=1211 & d$year<=1500,]
 
-## Plot data
+# Plot data
 par(mar=c(5,5,2,2),las=1,bty="n",cex.lab=2,cex.axis=2,pty="s")
-plot(d$temp.s.l,d$wheat,pch=19,xlab="Summer temperature",ylab="Wheat price",
-     axes=FALSE)
+plot(d$temp.s.l,d$wheat,pch=19,
+     xlab="Summer temperature",ylab="Wheat price", axes=FALSE)
 axis(1,tick=FALSE,line=-1);axis(2,tick=FALSE,line=-1)
 abline(lm(d$wheat~d$temp.s.l),lwd=2)
 
-# Almost the same
+# NB - Similar
 
-#### Fig.2 The LIA as Slutsky effect ####
+# FIG.2: The LIA as Slutsky effect
 # Summer temperature in the Netherlands 1301-1980
-
-# Data to time-series
-require(zoo)
+library(zoo)
 temp<-ts(weather$T_sum,start=c(751,1),frequency=1)/10
 temp.ma<-rollapply(temp,25,mean,na.rm=TRUE) # 25-year moving average
 
@@ -55,7 +55,8 @@ LIA.c<-LIA-mean(LIA,na.rm=TRUE)
 LIA.ma.c<-LIA.ma-mean(LIA.ma,na.rm=TRUE)
 
 # Plot data
-par(mar=c(3,6,3,2),mfrow=c(2,1),las=1,bty="n",cex.axis=1.5,cex.lab=1.5,pty="m")
+par(mar=c(3,6,3,2), mfrow=c(2,1), las=1, bty="n", 
+    cex.axis=1.5, cex.lab=1.5, pty="m")
 plot(LIA.ma.c,type="l",lwd=2,xlab="",ylab="",axes=F,ylim=c(-.45,.55))
 abline(h=0,lty=2)
 axis(1,tick=FALSE);axis(2,tick=FALSE)
@@ -64,12 +65,11 @@ plot(LIA.c,type="l",lwd=2,xlab="",ylab="",axes=F,ylim=c(-2.6,2.3))
 abline(h=0,lty=2)
 axis(1,tick=FALSE);axis(2,tick=FALSE)
 
-#### Fig.3 Historical series of Dutch summer temperature ####
+# FIG.3: Historical series of Dutch summer temperature
 # Smoothed using Bayesian Change Point Procedure
-# Note that the time-series contains NAs which doesn't go well with the bcp.
+# NB - the time-series contains NAs which doesn't go well with the bcp.
 # Therefore some adjustments need to be made.
-require(bcp)
-
+library(bcp)
 id.na<-which(is.na(LIA.c)) # Years with NA
 s.T<-as.vector(LIA.c)
 s.T<-as.vector(na.omit(s.T)) # Can't be done in one step for some reason
@@ -79,14 +79,17 @@ bcp.s.T<-bcp(s.T)
 pm<-as.vector(bcp.s.T$posterior.mean)
 
 # Adjust time series including NAs
-pm2<-c(NA,pm[1:6],NA,NA,pm[7:8],NA,pm[9:14],NA,NA,pm[15:16],NA,pm[17:19],NA,
-       pm[20:37],NA,pm[38:53],NA,pm[54:85],NA,pm[86:134],NA,pm[135:668])
+pm2<-c(NA, pm[1:6], NA, NA, pm[7:8], NA, pm[9:14], NA, NA,
+       pm[15:16], NA, pm[17:19], NA, pm[20:37], NA, pm[38:53],
+       NA, pm[54:85], NA, pm[86:134], NA, pm[135:668])
 pm2<-ts(pm2,start=c(1301,1))
 
-# Plot data
+# Plot
 par(mar=c(5,5,2,2),las=1,bty="n",cex.lab=2,cex.axis=2,pty="m")
 plot(LIA.c,type="p",axes=FALSE,xlab="",ylab="")
 lines(pm2,lwd=2,col="firebrick3")
 axis(1,tick=FALSE);axis(2,tick=FALSE)
 
-# Slight difference in the smoothed line; conclusions stays the same though.
+# NB- Smal difference in the smoothed line; conclusions stays the same though.
+
+## FIN
