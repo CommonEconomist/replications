@@ -1,4 +1,4 @@
-Replication of Albouy (2012) ["The Colonial Origins of Comparative Development: An Empirical Investigation: Comment"](https://www.aeaweb.org/articles?id=10.1257/aer.102.6.3059).
+Replication of Albouy (2012) ["The Colonial Origins of Comparative Development: An Empirical Investigation": Comment"](https://www.aeaweb.org/articles?id=10.1257/aer.102.6.3059).
 
 <br>
 Testing Instrumental Variables (IV) estimation using the `brms` package. 

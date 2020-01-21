@@ -1,7 +1,25 @@
-## Replications
+# Replications - Of various studies
 
-This repository contains data and code for a number of studies that I have tried to replicate. 
-In most cases these replications were the result of trying things our in R, familiarising myself with particular topics, or just plain procrastination. 
-For the large majority of studies I was able to replicate the original results; in unsuccessful cases the failure was often due to software issues (I guess).<br> 
+- [The colonial origins of comparative development: An empirical investigation](https://github.com/CommonEconomist/replications/tree/master/albouy)
+- [Rising food prices, food price volatility, and social unrest](https://github.com/CommonEconomist/replications/tree/master/bellemare)
+- [Modest, secure, and informed: Successful development in conflict zones](https://github.com/CommonEconomist/replications/tree/master/berman-et-al)
+- [The legacy of historical conflict: Evidence from Africa](https://github.com/CommonEconomist/replications/tree/master/besley-reynal-querol)
+- [International commodity prices, crowth and the outbreak of civil war in Sub-Saharan Africa](https://github.com/CommonEconomist/replications/tree/master/bruckner-ciccone)
+- [Warming increases the risk of civil war in Africa](https://github.com/CommonEconomist/replications/tree/master/burke-et-al)
+- [Testing Clausewitz: Nationalism, mass mobilization, and the severity of war](https://github.com/CommonEconomist/replications/tree/master/cederman-et-al)
+- [Trends and fluctuations in the severity of interstate wars](https://github.com/CommonEconomist/replications/tree/master/clauset)
+- [Contagious rebellion and preemptive repression](https://github.com/CommonEconomist/replications/tree/master/danneman-ritter)
+- [Spatial econometric models of cross-sectional interdependence in political science panel and time-series-cross-section data](https://github.com/CommonEconomist/replications/tree/master/franzese-hays)
+- [Using power laws to estimate conflict size](https://github.com/CommonEconomist/replications/tree/master/friedman)
+- [Partisan politics in the global economy](https://github.com/CommonEconomist/replications/tree/master/garrett)
+- [Mortality in Iraq associated with the 2003–2011 war and occupation](https://github.com/CommonEconomist/replications/tree/master/hagopian-et-al)
+- [Climate change, rainfall, and social conflict in Africa](https://github.com/CommonEconomist/replications/tree/master/hendrix-salehyan)
+- [Pattern in escalations in insurgent and terrorist activity](https://github.com/CommonEconomist/replications/tree/master/johnson-et-al)
+- [The waning of the Little Ice Age: Climate change in early modern Europe](https://github.com/CommonEconomist/replications/tree/master/kelly-o-grada)
+- [Not all oil price shocks are alike](https://github.com/CommonEconomist/replications/tree/master/killian)
+- [Population is the main driver of war group size and conflict casualties](https://github.com/CommonEconomist/replications/tree/master/oka-et-al)
+- [Credit booms gone bust](https://github.com/CommonEconomist/replications/tree/master/schularick-taylor)
+- [Vector Autoregressions](https://github.com/CommonEconomist/replications/tree/master/stock-watson)
+- [Climate change and violent conflict in Europe over the last millennium](https://github.com/CommonEconomist/replications/tree/master/tol-wagner)
+- [Location, location, location: An MCMC approach to modeling the spatial context of war and peace](https://github.com/CommonEconomist/replications/tree/master/ward-gleditsch)
 
-For more information and details on the individual studies; please consult the respective folder. 
