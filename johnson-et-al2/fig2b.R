@@ -1,5 +1,5 @@
 #date created 2020.03.10
-#last update 2020.03.10
+#last update  2020.03.10
 library(brms)
 library(data.table)
 library(tidyverse)
@@ -12,20 +12,20 @@ x <- X[X$Target=="government"]
 x <- x[x$Action %in% c("strike", "occupation", " demonstration", "rally"),]
 
 #data.table
-d<-data.table(when = as.Date(x$Date, format = "%d-%b-%y"), 
-              where = x$Location)
+d<-data.table(event.date = as.Date(x$Date, format = "%d-%b-%y"), 
+              location = x$Location)
 
 #variables
-d<-d[order(d$where, d$when),]
-d[, F.when := shift(when, n=1, type="lead"), by = "where"]
-d[, tau := as.numeric(F.when - when),]
-d[, n := seq_len(.N), by = 'where']
-d<-d[d$tau != 0,]
-d[, `:=`(ln.tau = log10(tau), ln.n = log10(n))]
+d<-d[order(d$location, d$event.date),]
+d[, next.event := shift(event.date, n=1, type="lead"), by = "where"]
+d[, interval := as.numeric(next.event - event.date),]
+d[, event.number := seq_len(.N), by = 'location']
+d<-d[d$interval != 0,]
+d[, `:=`(log.interval = log10(interval), log.event.number = log10(event.number))]
 
 #estimates
-m<-brm(ln.tau ~ ln.n + (1 + ln.n | where), d)
-beta<-ranef(m, pars = c("ln.n", "Intercept"))
+m<-brm(log.interval ~ log.event.number + (1 + log.event.number | location), d)
+beta<-ranef(m, pars = c("log.event.number", "Intercept"))
 
 r<-data.table(where = names(beta[[1]][,,1][,1]),
               intercept = beta[[1]][,,1][,1],
