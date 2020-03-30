@@ -1,40 +1,33 @@
-##### Best-fit power-law progress curve for Afghanistan IEDs ####
-# Based on Johnson et al. (2011, Science)
+## Best-fit power-law progress curve for Afghanistan IEDs
 # "Pattern in Escalations in Insurgent and Terrorist Activity"
+# Johnson et al. (2011, Science)
 # http://www.sciencemag.org/content/333/6038/81.abstract
-# This version:  13-07-2015
-# First version: 10-07-2015
+# Last version:  2020.03.30
+# First version: 2015.07.10
 rm(list=ls(all=TRUE)) # Clear workspace
 options(scipen=4)     
-
-## Libraries
 library(devtools)
-
-## Functions
 source_url("https://raw.githubusercontent.com/sjmurdoch/fancyaxis/master/fancyaxis.R")
 
-## Data
-d<-read.csv("2011_Johnson_et_al/afghanistan.csv",header=TRUE,stringsAsFactors=FALSE)
-d<-na.omit(d) # Remove last values without Tau. 
+#data
+d<-read.csv("afghanistan.csv",header=TRUE,stringsAsFactors=FALSE)
+d<-na.omit(d) #remove last observation without tau
 
-#### Create variables and indicators ####
-
-## Indicators
-
-# Event number per province
+#create variables and indicators
+#indicator: event number per province
 d$i<-seq.int(nrow(d)) 
 d$n<-as.integer(with(d,ave(i, Province,
                        FUN = function(x) cumsum(!duplicated(x)))))
 d$j<-as.numeric(factor(d$Province))
 
-N<-max(as.vector(unique(d$j))) # Number of provinces
+N<-max(as.vector(unique(d$j))) #number of provinces
 lbl<-as.vector(unique(d$Province))
 
-# Variables of interest (log10 scale)
+#variables on log10 scale
 d$n.n<-log10(d$n)
 d$tau.n<-log10(d$Tau)
 
-#### Estimate model ####
+#estimate model
 beta.hat<- list()
 tau.1<-list()
 
@@ -47,8 +40,8 @@ for(i in 1:N){
 beta.hat <- -as.numeric(beta.hat)
 tau.1<- 10^as.numeric(tau.1)
 
-#### Plot results ####
-par(mar=c(5,5,3,3),family="serif",las=1)
+#plot
+par(mar=c(5,5,3,3),pty='m',las=1)
 plot(tau.1,beta.hat,log= "x",tck=-.02,bty="n",pch=19,cex=1.2,xlim=c(10,1000),
      xlab="",ylab="",tck=.02,cex.lab=1.5,axes=FALSE)
 

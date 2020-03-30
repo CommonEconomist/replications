@@ -19,8 +19,8 @@ d<-data.table(event.date = as.Date(x$Date, format = "%d-%b-%y"),
 d<-d[order(d$location, d$event.date),]
 d[, next.event := shift(event.date, n=1, type="lead"), by = "location"]
 d[, interval := as.numeric(next.event - event.date),]
-d[, event.number := seq_len(.N), by = 'location']
 d<-d[d$interval != 0,]
+d[, event.number := seq_len(.N), by = 'location']
 d[, `:=`(log.interval = log10(interval), 
          log.event.number = log10(event.number))]
 
