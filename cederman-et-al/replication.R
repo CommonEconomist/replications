@@ -11,13 +11,13 @@ library(poweRlaw)
 p0=displ$new(d$battle_deaths[d$year<1789 & d$battle_deaths>=1e4])
 p0$setXmin(estimate_xmin(p0,xmax=1e8))
 p0$setPars(estimate_pars(p0))
-p0 # Reported value: a=0.65 -> Does not replicate (1.8, 22000)
+p0 # Reported value: a=0.65 -> (1.8-1, 22000)
 
 # 1.2) Fit power law: 1789-1997
 p1=displ$new(d$battle_deaths[d$year>=1789 & d$battle_deaths>=1e4])
 p1$setXmin(estimate_xmin(p1,xmax=1e8))
 p1$setPars(estimate_pars(p1))
-p1 # Reported value: a=0.35 -> Does not replicate (1.4, 12000)
+p1 # Reported value: a=0.35 -> (1.4 -1, 12000)
 
 # 2) Plot results
 par(mar=c(5,5,2,2),bty='n',las=1)
