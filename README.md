@@ -15,6 +15,7 @@
 - [Mortality in Iraq associated with the 2003–2011 war and occupation](https://github.com/CommonEconomist/replications/tree/master/hagopian-et-al)
 - [Climate change, rainfall, and social conflict in Africa](https://github.com/CommonEconomist/replications/tree/master/hendrix-salehyan)
 - [Pattern in escalations in insurgent and terrorist activity](https://github.com/CommonEconomist/replications/tree/master/johnson-et-al)
+- [Simple mathematical law benchmarks human confrontations](https://github.com/CommonEconomist/replications/tree/master/johnson-et-al2)
 - [The waning of the Little Ice Age: Climate change in early modern Europe](https://github.com/CommonEconomist/replications/tree/master/kelly-o-grada)
 - [Not all oil price shocks are alike](https://github.com/CommonEconomist/replications/tree/master/killian)
 - [Population is the main driver of war group size and conflict casualties](https://github.com/CommonEconomist/replications/tree/master/oka-et-al)
