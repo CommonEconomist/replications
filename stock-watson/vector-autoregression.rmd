@@ -1,16 +1,11 @@
-# Replication Stock & Watson (2001). "Vector Autoregressions".
-# Given that the provided replication data for this paper is only available 
-# in a RATS data file, the data needs to be build from scratch following
-# the description in the paper. 
-# The following data sources are used:
-# https://fred.stlouisfed.org/series/GDPCTPI
-# https://fred.stlouisfed.org/series/UNRATE
-# https://fred.stlouisfed.org/series/FEDFUNDS 
-# Only the interest rate is not seasonally adjusted
-setwd("~/github/replications/stock-watson")
+Replication of Stock & Watson (2001) ["Vector Autoregressions"](https://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.15.4.101).
+<br>
 
-#prepare data
-# NB - Can probably download data using quantmod package
+Given that the provided replication data for this paper is only available  in a RATS data file, the data need to be build from scratch following the description in the paper. 
+Data are taken from FRED: [GDP](https://fred.stlouisfed.org/series/GDPCTPI); [unemployment](https://fred.stlouisfed.org/series/UNRATE); interest rate (https://fred.stlouisfed.org/series/FEDFUNDS). 
+These data can probably also be loaded in R directly using the `quantmod` package. 
+
+```
 library(data.table)
 
 #gdp
@@ -62,10 +57,9 @@ plot(irf.pi)
 plot(irf.u)
 plot(irf.r)
 
-#^similar to figure 1 in paper; only small changes in magnitude.
-
 #Bayesian var
 library(BVAR)
 m <- bvar(x, lags = 4)
 imp.response <- irf(m, bv_irf(horizon = 24L))
 plot(imp.response)
+```
