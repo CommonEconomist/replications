@@ -1,4 +1,4 @@
-# Replication of Killian (2009) 
+# Replication Killian (2009) 
 # "Not all oil price shocks are alike"
 # https://www.aeaweb.org/articles?id=10.1257/aer.99.3.1053
 # using `vars` package
