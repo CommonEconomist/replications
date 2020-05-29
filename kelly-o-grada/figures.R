@@ -6,7 +6,7 @@
 # http://projects.knmi.nl/klimatologie/daggegevens/antieke_wrn/index.html
 # English wheat price data from Clarke
 # http://faculty.econ.ucdavis.edu/faculty/gclark/data.html
-# last update 2010.01.23
+# last update 2020.01.23
 library(bcp)
 library(data.table)
 library(dplyr)
