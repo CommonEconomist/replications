@@ -17,7 +17,7 @@
 - [Pattern in escalations in insurgent and terrorist activity](https://github.com/CommonEconomist/replications/tree/master/johnson-et-al)
 - [Simple mathematical law benchmarks human confrontations](https://github.com/CommonEconomist/replications/tree/master/johnson-et-al2)
 - [The waning of the Little Ice Age: Climate change in early modern Europe](https://github.com/CommonEconomist/replications/tree/master/kelly-o-grada)
-- [Not all oil price shocks are alike](https://github.com/CommonEconomist/replications/tree/master/killian)
+- [Not all oil price shocks are alike](https://github.com/CommonEconomist/replications/tree/master/kilian)
 - [Population is the main driver of war group size and conflict casualties](https://github.com/CommonEconomist/replications/tree/master/oka-et-al)
 - [Credit booms gone bust](https://github.com/CommonEconomist/replications/tree/master/schularick-taylor)
 - [Vector Autoregressions](https://github.com/CommonEconomist/replications/tree/master/stock-watson)
