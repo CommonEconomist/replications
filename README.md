@@ -2,9 +2,9 @@
 
 | Study | Year | Type | Success | Folder |
 | :---- | :--- | :--- | :----- | :----- |
-| Mortality in Iraq associated with the 2003–2011 war and occupation | 2013 | Replication | Yes | [link]((https://github.com/CommonEconomist/replications/tree/master/hagopian-et-al)) |
+| Mortality in Iraq associated with the 2003–2011 war and occupation | 2013 | Replication | Yes | [link](https://github.com/CommonEconomist/replications/tree/master/hagopian-et-al) |
 | The legacy of historical conflict: Evidence from Africa | 2014 | Reanalysis | Yes | [link](https://github.com/CommonEconomist/replications/tree/master/besley-reynal-querol) |
-| Modest, secure, and informed: Successful development in conflict zones | 2013 | Reanalysis | Almost | [link]((https://github.com/CommonEconomist/replications/tree/master/berman-et-al)) |
+| Modest, secure, and informed: Successful development in conflict zones | 2013 | Reanalysis | Almost | [link](https://github.com/CommonEconomist/replications/tree/master/berman-et-al) |
 | Warming increases the risk of civil war in Africa | 2009 | Reanalysis | No | [link](https://github.com/CommonEconomist/replications/tree/master/burke-et-al) |
 | International commodity prices, growth and the outbreak of civil war in Sub-Saharan Africa | 2010 | Reanalysis | No | [link](https://github.com/CommonEconomist/replications/tree/master/bruckner-ciccone) |
 | Rising food prices, food price volatility, and social unrest | 2015 | Reanalysis | Yes | [link](https://github.com/CommonEconomist/replications/tree/master/bellemare) |
